@@ -1,6 +1,6 @@
 // اسم الكاش - غيّري الرقم عند كل تحديث للموقع عشان تنزل النسخة الجديدة
-const CACHE_NAME = "azkar-v1";
-const RUNTIME_CACHE = "azkar-v1";
+const CACHE_NAME = "azkar-v2";
+const RUNTIME_CACHE = "azkar-v2";
 
 // الملفات الأساسية للموقع (الهيكل) - يتم تخزينها فوراً عند أول زيارة
 const APP_SHELL = [
@@ -9,8 +9,8 @@ const APP_SHELL = [
   "./style.css",
   "./script.js",
   "./manifest.json",
-  "./azkar.png",
-  "./azkar.png",
+  "./design.png",
+  "./design.png",
 ];
 
 // التثبيت: تخزين ملفات الموقع الأساسية
