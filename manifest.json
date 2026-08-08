@@ -1,0 +1,39 @@
+{
+  "name": " حصن المسلم ",
+  "short_name": " تحصين",
+  "description": "تطبيق أذكار وتسبيح ودعاء",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#f1e4f9",
+  "theme_color": "#611075",
+  "dir": "rtl",
+  "lang": "ar",
+  "icons": [
+    {
+      "src": "azkar.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "azkar.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "azkar.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "azkar.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

@@ -1,0 +1,2576 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="google" content="notranslate" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>حصن المسلم</title>
+
+    <!-- إعدادات PWA: تثبيت الموقع كتطبيق على الموبايل -->
+    <meta name="theme-color" content="#059669" />
+    <link rel="manifest" href="./manifest.json" />
+    <link rel="icon" href="azkar.png" />
+    <link rel="apple-touch-icon" href="azkar.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="أذكار " />
+    <meta name="mobile-web-app-capable" content="yes" />
+
+    <!-- خطوط عربية فاخرة -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- أيقونات FontAwesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- شريط التنقل العلوي -->
+    <nav class="navbar">
+      <!-- شريط التبويبات (Tabs) -->
+      <div class="tabs-container">
+        <button class="tab-btn active" onclick="openTab('tasbeeh')">
+          <i class="fas fa-hand-holding-heart"></i> التسبيح
+        </button>
+        <button class="tab-btn" onclick="openTab('azkar')">
+          <i class="fas fa-sun"></i> أذكار الصباح
+        </button>
+        <button class="tab-btn" onclick="openTab('azkarm')">
+          <i class="fas fa-star"></i> أذكار المساء
+        </button>
+        <button class="tab-btn" onclick="openTab('salah', this)">
+          <i class="fas fa-hands-praying"></i> أذكار الصلاة
+        </button>
+        <button class="tab-btn" onclick="openTab('post-salah', this)">
+          <i class="fas fa-hands-praying"></i> أذكار بعد الصلاة
+        </button>
+        <button class="tab-btn" onclick="openTab('sleep-azkar', this)">
+          <i class="fas fa-moon"></i> أذكار النوم
+        </button>
+        <button class="tab-btn" onclick="openTab('quran-duaa', this)">
+          <i class="fas fa-book"></i> أدعية
+        </button>
+        <button class="tab-btn" onclick="openTab('quran')">
+          <i class="fas fa-book-open"></i> القرآن الكريم
+        </button>
+        <button class="tab-btn" onclick="openTab('share-page', this)">
+          <i class="fas fa-share-nodes"></i> شارك الاجر
+        </button>
+      </div>
+      <button id="theme-toggle" class="theme-btn">
+        <i class="fas fa-moon"></i>
+      </button>
+    </nav>
+    <main class="main-content">
+      <!-- قسم التسبيح -->
+      <section id="tasbeeh" class="tab-content active">
+        <div class="section-header">
+          <h2>المسبحة الإلكترونية</h2>
+          <p>اضغط على الدائرة للتسبيح</p>
+        </div>
+        <!-- لوحة الإحصائيات والستريك -->
+        <div class="stats-panel">
+          <div class="stats-summary-row">
+            <div class="stats-summary-item">
+              <i class="fas fa-fire" style="color: #f97316"></i>
+              <div>
+                <span class="stats-summary-value streak-count">0</span>
+                <span class="stats-summary-label">يوم متتالي</span>
+              </div>
+            </div>
+            <div class="stats-summary-item">
+              <i
+                class="fas fa-calendar-week"
+                style="color: var(--primary-color)"
+              ></i>
+              <div>
+                <span class="stats-summary-value" id="week-total-count">0</span>
+                <span class="stats-summary-label">تسبيحة هذا الأسبوع</span>
+              </div>
+            </div>
+          </div>
+          <div class="weekly-chart" id="weekly-stats-bars"></div>
+          <div class="top-dhikr-row">
+            <i class="fas fa-star" style="color: var(--accent-color)"></i>
+            <span>أكثر ذكر كررته هذا الأسبوع: </span>
+            <strong id="top-dhikr-name">لا يوجد بعد</strong>
+          </div>
+        </div>
+        <div class="grid-container">
+          <!-- كارت التسبيح 1 -->
+          <div
+            class="counter-card"
+            onclick="incrementCounter('c1', 1000, this)"
+          >
+            <div
+              class="progress-circle"
+              id="prog-c1"
+              style="
+                background: conic-gradient(
+                  var(--primary-color) 0%,
+                  var(--circle-bg) 0%
+                );
+              "
+            >
+              <div class="inner-circle"><span id="c1">0</span></div>
+            </div>
+            <h3>سبحان الله</h3>
+            <p class="target-text">الهدف: 1000</p>
+          </div>
+          <!-- كارت التسبيح 2 -->
+          <div
+            class="counter-card"
+            onclick="incrementCounter('c2', 1000, this)"
+          >
+            <div
+              class="progress-circle"
+              id="prog-c2"
+              style="
+                background: conic-gradient(
+                  var(--primary-color) 0%,
+                  var(--circle-bg) 0%
+                );
+              "
+            >
+              <div class="inner-circle"><span id="c2">0</span></div>
+            </div>
+            <h3>الحمد لله</h3>
+            <p class="target-text">الهدف: 1000</p>
+          </div>
+          <!-- كارت التسبيح 3 -->
+          <div
+            class="counter-card"
+            onclick="incrementCounter('c3', 1000, this)"
+          >
+            <div
+              class="progress-circle"
+              id="prog-c3"
+              style="
+                background: conic-gradient(
+                  var(--primary-color) 0%,
+                  var(--circle-bg) 0%
+                );
+              "
+            >
+              <div class="inner-circle"><span id="c3">0</span></div>
+            </div>
+            <h3>الله أكبر</h3>
+            <p class="target-text">الهدف: 1000</p>
+          </div>
+          <!-- كارت التسبيح 4 -->
+          <div
+            class="counter-card"
+            onclick="incrementCounter('c4', 1000, this)"
+          >
+            <div
+              class="progress-circle"
+              id="prog-c4"
+              style="
+                background: conic-gradient(
+                  var(--primary-color) 0%,
+                  var(--circle-bg) 0%
+                );
+              "
+            >
+              <div class="inner-circle"><span id="c4">0</span></div>
+            </div>
+            <h3>لا إله إلا الله</h3>
+            <p class="target-text">الهدف: 1000</p>
+          </div>
+          <!-- كارت التسبيح 5 -->
+          <div
+            class="counter-card"
+            onclick="incrementCounter('c5', 1000, this)"
+          >
+            <div
+              class="progress-circle"
+              id="prog-c5"
+              style="
+                background: conic-gradient(
+                  var(--primary-color) 0%,
+                  var(--circle-bg) 0%
+                );
+              "
+            >
+              <div class="inner-circle"><span id="c5">0</span></div>
+            </div>
+            <h3>لا حول ولا قوة إلا بالله</h3>
+            <p class="target-text">الهدف: 1000</p>
+          </div>
+          <!-- كارت التسبيح 6 -->
+          <div
+            class="counter-card"
+            onclick="incrementCounter('c6', 1000, this)"
+          >
+            <div
+              class="progress-circle"
+              id="prog-c6"
+              style="
+                background: conic-gradient(
+                  var(--primary-color) 0%,
+                  var(--circle-bg) 0%
+                );
+              "
+            >
+              <div class="inner-circle"><span id="c6">0</span></div>
+            </div>
+            <h3>اللهم صلِّ على محمد</h3>
+            <p class="target-text">الهدف: 1000</p>
+          </div>
+          <!-- كارت التسبيح 7 -->
+          <div
+            class="counter-card"
+            onclick="incrementCounter('c7', 1000, this)"
+          >
+            <div
+              class="progress-circle"
+              id="prog-c7"
+              style="
+                background: conic-gradient(
+                  var(--primary-color) 0%,
+                  var(--circle-bg) 0%
+                );
+              "
+            >
+              <div class="inner-circle"><span id="c7">0</span></div>
+            </div>
+            <h3>
+              أسْتَغْفِرُ اللهَ العَظِيمَ الَّذِي لاَ إلَهَ إلاَّ هُوَ، الحَيُّ
+              القَيُّومُ، وَأتُوبُ إلَيهِ
+            </h3>
+            <p class="target-text">الهدف: 1000</p>
+          </div>
+          <!-- كارت التسبيح 8 -->
+          <div
+            class="counter-card"
+            onclick="incrementCounter('c8', 1000, this)"
+          >
+            <div
+              class="progress-circle"
+              id="prog-c8"
+              style="
+                background: conic-gradient(
+                  var(--primary-color) 0%,
+                  var(--circle-bg) 0%
+                );
+              "
+            >
+              <div class="inner-circle"><span id="c8">0</span></div>
+            </div>
+            <h3>سبحان الله وبحمده</h3>
+            <p class="target-text">الهدف: 1000</p>
+          </div>
+          <!-- كارت التسبيح 9 -->
+          <div
+            class="counter-card"
+            onclick="incrementCounter('c9', 1000, this)"
+          >
+            <div
+              class="progress-circle"
+              id="prog-c9"
+              style="
+                background: conic-gradient(
+                  var(--primary-color) 0%,
+                  var(--circle-bg) 0%
+                );
+              "
+            >
+              <div class="inner-circle"><span id="c9">0</span></div>
+            </div>
+            <h3>سبحان الله العَظـيم</h3>
+            <p class="target-text">الهدف: 1000</p>
+          </div>
+          <!-- كارت التسبيح 10 -->
+          <div
+            class="counter-card"
+            onclick="incrementCounter('c10', 1000, this)"
+          >
+            <div
+              class="progress-circle"
+              id="prog-c10"
+              style="
+                background: conic-gradient(
+                  var(--primary-color) 0%,
+                  var(--circle-bg) 0%
+                );
+              "
+            >
+              <div class="inner-circle"><span id="c10">0</span></div>
+            </div>
+            <h3>
+              لَا إلَه إلّا اللهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ
+              وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلُّ شَيْءِ قَدِيرِ ..
+            </h3>
+            <p class="target-text">الهدف: 1000</p>
+          </div>
+          <!-- كارت التسبيح 11 -->
+          <div
+            class="counter-card"
+            onclick="incrementCounter('c11', 1000, this)"
+          >
+            <div
+              class="progress-circle"
+              id="prog-c11"
+              style="
+                background: conic-gradient(
+                  var(--primary-color) 0%,
+                  var(--circle-bg) 0%
+                );
+              "
+            >
+              <div class="inner-circle"><span id="c11">0</span></div>
+            </div>
+            <h3>لا إله إلا انت سبحانك اني كنت من الظالمين</h3>
+            <p class="target-text">الهدف: 1000</p>
+          </div>
+          <!-- كارت التسبيح 12 -->
+          <div
+            class="counter-card"
+            onclick="incrementCounter('c12', 1000, this)"
+          >
+            <div
+              class="progress-circle"
+              id="prog-c12"
+              style="
+                background: conic-gradient(
+                  var(--primary-color) 0%,
+                  var(--circle-bg) 0%
+                );
+              "
+            >
+              <div class="inner-circle"><span id="c12">0</span></div>
+            </div>
+            <h3>اللهم إنك عفوا كريم تحب العفو فاعفو عني</h3>
+            <p class="target-text">الهدف: 1000</p>
+          </div>
+          <!-- كارت التسبيح 13 -->
+          <div
+            class="counter-card"
+            onclick="incrementCounter('c13', 1000, this)"
+          >
+            <div
+              class="progress-circle"
+              id="prog-c13"
+              style="
+                background: conic-gradient(
+                  var(--primary-color) 0%,
+                  var(--circle-bg) 0%
+                );
+              "
+            >
+              <div class="inner-circle"><span id="c13">0</span></div>
+            </div>
+            <h3>اللهم اغفر لي ذنبي كله دقه وجله علانيته وسره وأوله واخره</h3>
+            <p class="target-text">الهدف: 1000</p>
+          </div>
+          <!-- كارت التسبيح 14 -->
+          <div
+            class="counter-card"
+            onclick="incrementCounter('c14', 1000, this)"
+          >
+            <div
+              class="progress-circle"
+              id="prog-c14"
+              style="
+                background: conic-gradient(
+                  var(--primary-color) 0%,
+                  var(--circle-bg) 0%
+                );
+              "
+            >
+              <div class="inner-circle"><span id="c14">0</span></div>
+            </div>
+            <h3>سبحان الله وبحمده عدد خلقه ورضا نفسه وزنة عرشه</h3>
+            <p class="target-text">الهدف: 1000</p>
+          </div>
+          <!-- كارت التسبيح 15 -->
+          <div
+            class="counter-card"
+            onclick="incrementCounter('c15', 1000, this)"
+          >
+            <div
+              class="progress-circle"
+              id="prog-c15"
+              style="
+                background: conic-gradient(
+                  var(--primary-color) 0%,
+                  var(--circle-bg) 0%
+                );
+              "
+            >
+              <div class="inner-circle"><span id="c15">0</span></div>
+            </div>
+            <h3>اللهم أعني على ذكرك وشكرك وحسن عبادتك</h3>
+            <p class="target-text">الهدف: 1000</p>
+          </div>
+        </div>
+        <button class="reset-btn" onclick="resetCounters()">
+          <i class="fas fa-undo"></i> تصفير جميع العدادات
+        </button>
+      </section>
+      <!-- قسم أذكار الصباح  -->
+      <section id="azkar" class="tab-content">
+        <div class="section-header">
+          <h2>أذكار الصباح</h2>
+          <p>حصن المسلم اليومي</p>
+        </div>
+        <div class="azkar-list">
+          <div class="azkar-item">
+            <p class="azkar-text">
+              "أَعُوذُ بِاللهِ مِنْ الشَّيْطَانِ الرَّجِيمِ بسم الله الرحمن
+              الرحيم اللّهُ لاَ إِلَـهَ إِلاَّ هُوَ الْحَيُّ الْقَيُّومُ لاَ
+              تَأْخُذُهُ سِنَةٌ وَلاَ نَوْمٌ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا
+              فِي الأَرْضِ مَن ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلاَّ بِإِذْنِهِ
+              يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ وَلاَ يُحِيطُونَ
+              بِشَيْءٍ مِّنْ عِلْمِهِ إِلاَّ بِمَا شَاء وَسِعَ كُرْسِيُّهُ
+              السَّمَاوَاتِ وَالأَرْضَ وَلاَ يَؤُودُهُ حِفْظُهُمَا وَهُوَ
+              الْعَلِيُّ الْعَظِيمُ. "
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              "اللّهُـمَّ بِكَ أَصْـبَحْنا وَبِكَ أَمْسَـينا ، وَبِكَ نَحْـيا
+              وَبِكَ نَمُـوتُ وَإِلَيْكَ النُّـشُور.."
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              " اللّهـمَّ أَنْتَ رَبِّـي لا إلهَ إلاّ أَنْتَ ، خَلَقْتَنـي
+              وَأَنا عَبْـدُك ، وَأَنا عَلـى عَهْـدِكَ وَوَعْـدِكَ ما
+              اسْتَـطَعْـت ، أَعـوذُبِكَ مِنْ شَـرِّ ما صَنَـعْت ، أَبـوءُ لَـكَ
+              بِنِعْـمَتِـكَ عَلَـيَّ وَأَبـوءُ بِذَنْـبي فَاغْفـِرْ لي
+              فَإِنَّـهُ لا يَغْـفِرُ الذُّنـوبَ إِلاّ أَنْتَ .. "
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              " أَصْبَـحْـنا عَلَى فِطْرَةِ الإسْلاَمِ، وَعَلَى كَلِمَةِ
+              الإِخْلاَصِ، وَعَلَى دِينِ نَبِيِّنَا مُحَمَّدٍ صَلَّى اللهُ
+              عَلَيْهِ وَسَلَّمَ، وَعَلَى مِلَّةِ أَبِينَا إبْرَاهِيمَ حَنِيفاً
+              مُسْلِماً وَمَا كَانَ مِنَ المُشْرِكِينَ. "
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              " اللّهُـمَّ عالِـمَ الغَـيْبِ وَالشّـهادَةِ فاطِـرَ السّماواتِ
+              وَالأرْضِ رَبَّ كـلِّ شَـيءٍ وَمَليـكَه، أَشْهَـدُ أَنْ لا إِلـهَ
+              إِلاّ أَنْت، أَعـوذُ بِكَ مِن شَـرِّ نَفْسـي وَمِن شَـرِّ
+              الشَّيْـطانِ وَشِرْكِهِ، وَأَنْ أَقْتَـرِفَ عَلـى نَفْسـي سوءاً
+              أَوْ أَجُـرَّهُ إِلـى مُسْـلِم. "
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              "أَصْبَـحْـنا وَأَصْبَـحْ المُـلكُ للهِ رَبِّ العـالَمـين،
+              اللّهُـمَّ إِنِّـي أسْـأَلُـكَ خَـيْرَ هـذا الـيَوْم، فَـتْحَهُ،
+              وَنَصْـرَهُ، وَنـورَهُ وَبَـرَكَتَـهُ، وَهُـداهُ، وَأَعـوذُ بِـكَ
+              مِـنْ شَـرِّ ما فـيهِ وَشَـرِّ ما بَعْـدَه. "
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              " اللَّهُمَّ أَنْتَ رَبِّي لا إِلَهَ إِلا أَنْتَ، عَلَيْكَ
+              تَوَكَّلْتُ، وَأَنْتَ رَبُّ الْعَرْشِ الْعَظِيمِ، مَا شَاءَ
+              اللَّهُ كَانَ، وَمَا لَمْ يَشَأْ لَمْ يَكُنْ، وَلا حَوْلَ وَلا
+              قُوَّةَ إِلا بِاللَّهِ الْعَلِيِّ الْعَظِيمِ، أَعْلَمُ أَنَّ
+              اللَّهَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ، وَأَنَّ اللَّهَ قَدْ أَحَاطَ
+              بِكُلِّ شَيْءٍ عِلْمًا، اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنْ شَرِّ
+              نَفْسِي، وَمِنْ شَرِّ كُلِّ دَابَّةٍ أَنْتَ آخِذٌ بِنَاصِيَتِهَا،
+              إِنَّ رَبِّي عَلَى صِرَاطٍ مُسْتَقِيمٍ. "
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              " أصـبَحْنا وَأَصْـبَحَ المُـلْكُ لله وَالحَمدُ لله، لا إلهَ إلاّ
+              اللّهُ وَحدَهُ لا شَريكَ لهُ، لهُ المُـلكُ ولهُ الحَمْـد، وهُوَ
+              على كلّ شَيءٍ قدير، رَبِّ أسْـأَلُـكَ خَـيرَ ما في هـذا اليوم
+              وَخَـيرَ ما بَعْـدَه، وَأَعـوذُ بِكَ مِنْ شَـرِّ ما في هـذا اليوم
+              وَشَرِّ ما بَعْـدَه، رَبِّ أَعـوذُ بِكَ مِنَ الْكَسَـلِ وَسـوءِ
+              الْكِـبَر، رَبِّ أَعـوذُ بِكَ مِنْ عَـذابٍ في النّـارِ وَعَـذابٍ
+              في القَـبْر. "
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+
+          <div class="azkar-item">
+            <p class="azkar-text">
+              "بِسْمِ اللهِ الرَّحْمنِ الرَّحِيم قُلْ هُوَ ٱللَّهُ أَحَدٌ،
+              ٱللَّهُ ٱلصَّمَدُ، لَمْ يَلِدْ وَلَمْ يُولَدْ، وَلَمْ يَكُن لَّهُۥ
+              كُفُوًا أَحَدٌۢ."
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="3">3 مرات</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 3)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+
+          <div class="azkar-item">
+            <p class="azkar-text">
+              "بِسْمِ اللهِ الرَّحْمنِ الرَّحِيم قُلْ أَعُوذُ بِرَبِّ ٱلْفَلَقِ،
+              مِن شَرِّ مَا خَلَقَ، وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ، وَمِن
+              شَرِّ ٱلنَّفَّٰثَٰتِ فِى ٱلْعُقَدِ، وَمِن شَرِّ حَاسِدٍ إِذَا
+              حَسَدَ."
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="3">3 مرات</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 3)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              "قُلْ أَعُوذُ بِرَبِّ ٱلنَّاسِ، مَلِكِ ٱلنَّاسِ، إِلَٰهِ ٱلنَّاسِ،
+              مِن شَرِّ ٱلْوَسْوَاسِ ٱلْخَنَّاسِ، ٱلَّذِى يُوَسْوِسُ فِى صُدُورِ
+              ٱلنَّاسِ، مِنَ ٱلْجِنَّةِ وَٱلنَّاسِ."
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="3">3 مرات</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 3)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              "اللَّهُمَّ إِنِّي أَسْأَلُكَ عِلْمًا نَافِعًا، وَرِزْقًا
+              طَيِّبًا، وَعَمَلًا مُتَقَبَّلًا. "
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="3">3 مرات</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 3)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              "اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنْ الْهَمِّ وَالْحَزَنِ،
+              وَأَعُوذُ بِكَ مِنْ الْعَجْزِ وَالْكَسَلِ، وَأَعُوذُ بِكَ مِنْ
+              الْجُبْنِ وَالْبُخْلِ، وَأَعُوذُ بِكَ مِنْ غَلَبَةِ الدَّيْنِ،
+              وَقَهْرِ الرِّجَالِ. "
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="3">3 مرات</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 3)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              "يَا حَيُّ يَا قيُّومُ بِرَحْمَتِكَ أسْتَغِيثُ أصْلِحْ لِي شَأنِي
+              كُلَّهُ وَلاَ تَكِلْنِي إلَى نَفْسِي طَـرْفَةَ عَيْنٍ."
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="3">3 مرات</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 3)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              "اللّهُـمَّ عافِـني في بَدَنـي، اللّهُـمَّ عافِـني في سَمْـعي،
+              اللّهُـمَّ عافِـني في بَصَـري، لا إلهَ إلاّ أَنْـتَ اللّهُـمَّ
+              إِنّـي أَعـوذُ بِكَ مِنَ الْكُـفر، وَالفَـقْر، وَأَعـوذُ بِكَ مِنْ
+              عَذابِ القَـبْر، لا إلهَ إلاّ أَنْـتَ."
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="3">3 مرات</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 3)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              "سُبْحـانَ اللهِ وَبِحَمْـدِهِ عَدَدَ خَلْـقِه، وَرِضـا نَفْسِـه،
+              وَزِنَـةَ عَـرْشِـه، وَمِـدادَ كَلِمـاتِـه. "
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="3">3 مرات</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 3)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              "بِسـمِ اللهِ الذي لا يَضُـرُّ مَعَ اسمِـهِ شَيءٌ في الأرْضِ وَلا
+              في السّمـاءِ وَهـوَ السّمـيعُ العَلـيم."
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="3">3 مرات</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 3)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              " أَعـوذُ بِكَلِمـاتِ اللّهِ التّـامّـاتِ مِنْ شَـرِّ ما خَلَـق.
+              💛"
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="3">3 مرات</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 3)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              "رَضيـتُ بِاللهِ رَبَّـاً وَبِالإسْلامِ ديـناً وَبِمُحَـمَّدٍ صلى
+              الله عليه وسلم نَبِيّـاً."
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="3">3 مرات</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 3)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              اللّهُـمَّ إِنِّـي أسْـأَلُـكَ العَـفْوَ وَالعـافِـيةَ في
+              الدُّنْـيا وَالآخِـرَة، اللّهُـمَّ إِنِّـي أسْـأَلُـكَ العَـفْوَ
+              وَالعـافِـيةَ في ديني وَدُنْـيايَ وَأهْـلي وَمالـي، اللّهُـمَّ
+              اسْتُـرْ عـوْراتي وَآمِـنْ رَوْعاتـي، اللّهُـمَّ احْفَظْـني مِن
+              بَـينِ يَدَيَّ وَمِن خَلْفـي وَعَن يَمـيني وَعَن شِمـالي، وَمِن
+              فَوْقـي، وَأَعـوذُ بِعَظَمَـتِكَ أَن أُغْـتالَ مِن تَحْتـي.
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="3">3 مرات</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 3)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              "اللّهُـمَّ إِنِّـي أَصْبَـحْتُ أُشْـهِدُك، وَأُشْـهِدُ حَمَلَـةَ
+              عَـرْشِـك، وَمَلَائِكَتَكَ، وَجَمـيعَ خَلْـقِك، أَنَّـكَ أَنْـتَ
+              اللهُ لا إلهَ إلاّ أَنْـتَ وَحْـدَكَ لا شَريكَ لَـك، وَأَنَّ ُ
+              مُحَمّـداً عَبْـدُكَ وَرَسـولُـك. "
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="4">4 مرات</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 4)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              "حَسْبِـيَ اللّهُ لا إلهَ إلاّ هُوَ عَلَـيهِ تَوَكَّـلتُ وَهُوَ
+              رَبُّ العَرْشِ العَظـيم."
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="7">7 مرات</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 7)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              اللَّهُمَّ صَلِّ وَسَلِّمْ وَبَارِكْ على نَبِيِّنَا مُحمَّد.
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="10">10 مرات</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 10)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              لَا إلَه إلّا اللهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ
+              وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءِ قَدِيرِ.
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="100">100 مرات</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 100)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">سُبْحـانَ اللهِ وَبِحَمْـدِهِ.</p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="100">100 مرات</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 100)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">أسْتَغْفِرُ اللهَ وَأتُوبُ إلَيْه.</p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="100">100 مرات</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 100)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+        </div>
+        <button
+          class="reset-btn"
+          onclick="resetAzkar(this)"
+          style="margin-top: 15px; width: 100%"
+        >
+          <i class="fas fa-undo"></i> إعادة الأذكار
+        </button>
+      </section>
+          <!-- قسم أذكار  المساء -->
+      <section id="azkarm" class="tab-content">
+        <div class="section-header">
+          <h2>أذكارالمساء</h2>
+          <p>حصن المسلم اليومي</p>
+        </div>
+        <div class="azkar-list">
+          <div class="azkar-item">
+            <p class="azkar-text">
+              "أَعُوذُ بِاللهِ مِنْ الشَّيْطَانِ الرَّجِيمِ بسم الله الرحمن
+              الرحيم اللّهُ لاَ إِلَـهَ إِلاَّ هُوَ الْحَيُّ الْقَيُّومُ لاَ
+              تَأْخُذُهُ سِنَةٌ وَلاَ نَوْمٌ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا
+              فِي الأَرْضِ مَن ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلاَّ بِإِذْنِهِ
+              يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ وَلاَ يُحِيطُونَ
+              بِشَيْءٍ مِّنْ عِلْمِهِ إِلاَّ بِمَا شَاء وَسِعَ كُرْسِيُّهُ
+              السَّمَاوَاتِ وَالأَرْضَ وَلاَ يَؤُودُهُ حِفْظُهُمَا وَهُوَ
+              الْعَلِيُّ الْعَظِيمُ. "
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              " اللّهُـمَّ بِكَ أَمْسَـينا وَبِكَ أَصْـبَحْنا، وَبِكَ نَحْـيا
+              وَبِكَ نَمُـوتُ وَإِلَـيْكَ الْمَصِيرُ .. "
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              " اللّهـمَّ أَنْتَ رَبِّـي لا إلهَ إلاّ أَنْتَ ، خَلَقْتَنـي
+              وَأَنا عَبْـدُك ، وَأَنا عَلـى عَهْـدِكَ وَوَعْـدِكَ ما
+              اسْتَـطَعْـت ، أَعـوذُبِكَ مِنْ شَـرِّ ما صَنَـعْت ، أَبـوءُ لَـكَ
+              بِنِعْـمَتِـكَ عَلَـيَّ وَأَبـوءُ بِذَنْـبي فَاغْفـِرْ لي
+              فَإِنَّـهُ لا يَغْـفِرُ الذُّنـوبَ إِلاّ أَنْتَ .. "
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              "أَمْسَيْناعَلَى فِطْرَةِ الإسْلاَمِ، وَعَلَى كَلِمَةِ
+              الإِخْلاَصِ، وَعَلَى دِينِ نَبِيِّنَا مُحَمَّدٍ صَلَّى اللهُ
+              عَلَيْهِ وَسَلَّمَ، وَعَلَى مِلَّةِ أَبِينَا إبْرَاهِيمَ حَنِيفاً
+              مُسْلِماً وَمَا كَانَ مِنَ المُشْرِكِينَ. "
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              "اللّهُـمَّ إِنِّـي أسْـأَلُـكَ العَـفْوَ وَالعـافِـيةَ في
+              الدُّنْـيا وَالآخِـرَة، اللّهُـمَّ إِنِّـي أسْـأَلُـكَ العَـفْوَ
+              وَالعـافِـيةَ في ديني وَدُنْـيايَ وَأهْـلي وَمالـي، اللّهُـمَّ
+              اسْتُـرْ عـوْراتي وَآمِـنْ رَوْعاتـي، اللّهُـمَّ احْفَظْـني مِن
+              بَـينِ يَدَيَّ وَمِن خَلْفـي وَعَن يَمـيني وَعَن شِمـالي، وَمِن
+              فَوْقـي، وَأَعـوذُ بِعَظَمَـتِكَ أَن أُغْـتالَ مِن تَحْتـي."
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              " اللّهُـمَّ عالِـمَ الغَـيْبِ وَالشّـهادَةِ فاطِـرَ السّماواتِ
+              وَالأرْضِ رَبَّ كـلِّ شَـيءٍ وَمَليـكَه، أَشْهَـدُ أَنْ لا إِلـهَ
+              إِلاّ أَنْت، أَعـوذُ بِكَ مِن شَـرِّ نَفْسـي وَمِن شَـرِّ
+              الشَّيْـطانِ وَشِرْكِهِ، وَأَنْ أَقْتَـرِفَ عَلـى نَفْسـي سوءاً
+              أَوْ أَجُـرَّهُ إِلـى مُسْـلِم. "
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              " أَمْسَيْنا وَأَمْسَى الْمُلْكُ للهِ رَبُّ الْعَالَمَيْنِ،
+              اللَّهُمَّ إِنَّي أسْأَلُكَ خَيْرَ هَذَه اللَّيْلَةِ فَتْحُهَا
+              وَنُصَرُّهَا، وَنورَهُا و برَكَتَهُا، وَهُداهُا، وَأَعُوذُ بِكَ
+              مِنْ شَرِّ مَا فيهِا وَشَرَّ مَا بَعْدَهَا ربِّ أعوذُ بك من الكسل
+              وسوء الكبر، ربِّ أعوذ بك من عذاب في النار وعذاب في القبر.."
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              " اللَّهُمَّ أَنْتَ رَبِّي لا إِلَهَ إِلا أَنْتَ، عَلَيْكَ
+              تَوَكَّلْتُ، وَأَنْتَ رَبُّ الْعَرْشِ الْعَظِيمِ، مَا شَاءَ
+              اللَّهُ كَانَ، وَمَا لَمْ يَشَأْ لَمْ يَكُنْ، وَلا حَوْلَ وَلا
+              قُوَّةَ إِلا بِاللَّهِ الْعَلِيِّ الْعَظِيمِ، أَعْلَمُ أَنَّ
+              اللَّهَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ، وَأَنَّ اللَّهَ قَدْ أَحَاطَ
+              بِكُلِّ شَيْءٍ عِلْمًا، اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنْ شَرِّ
+              نَفْسِي، وَمِنْ شَرِّ كُلِّ دَابَّةٍ أَنْتَ آخِذٌ بِنَاصِيَتِهَا،
+              إِنَّ رَبِّي عَلَى صِرَاطٍ مُسْتَقِيمٍ. "
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              " أَمْسَيْـنا وَأَمْسـى المُـلْكُ لله وَالحَمدُ لله، لا إلهَ إلاّ
+              اللّهُ وَحدَهُ لا شَريكَ لهُ، لهُ المُـلكُ ولهُ الحَمْـد، وهُوَ
+              على كلّ شَيءٍ قدير، رَبِّ أسْـأَلُـكَ خَـيرَ ما في هـذا اليوم
+              وَخَـيرَ ما بَعْـدَه، وَأَعـوذُ بِكَ مِنْ شَـرِّ ما في هـذا اليوم
+              وَشَرِّ ما بَعْـدَه، رَبِّ أَعـوذُ بِكَ مِنَ الْكَسَـلِ وَسـوءِ
+              الْكِـبَر، رَبِّ أَعـوذُ بِكَ مِنْ عَـذابٍ في النّـارِ وَعَـذابٍ
+              في القَـبْر. "
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              " اللّهُـمَّ ما أَمسى بي مِـنْ نِعْـمَةٍ أَو بِأَحَـدٍ مِـنْ
+              خَلْـقِك ، فَمِـنْكَ وَحْـدَكَ لا شريكَ لَـك ، فَلَـكَ الْحَمْـدُ
+              وَلَـكَ الشُّكْـر .. "
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+
+          <div class="azkar-item">
+            <p class="azkar-text">
+              "بِسْمِ اللهِ الرَّحْمنِ الرَّحِيم قُلْ هُوَ ٱللَّهُ أَحَدٌ،
+              ٱللَّهُ ٱلصَّمَدُ، لَمْ يَلِدْ وَلَمْ يُولَدْ، وَلَمْ يَكُن لَّهُۥ
+              كُفُوًا أَحَدٌۢ."
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="3">3 مرات</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 3)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+
+          <div class="azkar-item">
+            <p class="azkar-text">
+              "بِسْمِ اللهِ الرَّحْمنِ الرَّحِيم قُلْ أَعُوذُ بِرَبِّ ٱلْفَلَقِ،
+              مِن شَرِّ مَا خَلَقَ، وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ، وَمِن
+              شَرِّ ٱلنَّفَّٰثَٰتِ فِى ٱلْعُقَدِ، وَمِن شَرِّ حَاسِدٍ إِذَا
+              حَسَدَ."
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="3">3 مرات</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 3)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              "قُلْ أَعُوذُ بِرَبِّ ٱلنَّاسِ، مَلِكِ ٱلنَّاسِ، إِلَٰهِ ٱلنَّاسِ،
+              مِن شَرِّ ٱلْوَسْوَاسِ ٱلْخَنَّاسِ، ٱلَّذِى يُوَسْوِسُ فِى صُدُورِ
+              ٱلنَّاسِ، مِنَ ٱلْجِنَّةِ وَٱلنَّاسِ."
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="3">3 مرات</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 3)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              اللَّهُمَّ إِنَّا نَعُوذُ بِكَ مِنْ أَنْ نُشْرِكَ بِكَ شَيْئًا
+              نَعْلَمُهُ ، وَنَسْتَغْفِرُكَ لِمَا لَا نَعْلَمُهُ🍃
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="3">3 مرات</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 3)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              "اللَّهُمَّ إِنِّي أَسْأَلُكَ عِلْمًا نَافِعًا، وَرِزْقًا
+              طَيِّبًا، وَعَمَلًا مُتَقَبَّلًا. "
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="3">3 مرات</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 3)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+
+          <div class="azkar-item">
+            <p class="azkar-text">
+              أسْتَغْفِرُ اللهَ العَظِيمَ الَّذِي لاَ إلَهَ إلاَّ هُوَ، الحَيُّ
+              القَيُّومُ، وَأتُوبُ إلَيهِ .
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="3">3 مرات</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 3)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              يا رَبِّ , لَكَ الْحَمْدُ كَمَا يَنْبَغِي لِجَلَالِ وَجْهِكَ ,
+              وَلِعَظِيمِ سُلْطَانِكَ ..
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="3">3 مرات</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 3)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              "اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنْ الْهَمِّ وَالْحَزَنِ،
+              وَأَعُوذُ بِكَ مِنْ الْعَجْزِ وَالْكَسَلِ، وَأَعُوذُ بِكَ مِنْ
+              الْجُبْنِ وَالْبُخْلِ، وَأَعُوذُ بِكَ مِنْ غَلَبَةِ الدَّيْنِ،
+              وَقَهْرِ الرِّجَالِ. "
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="3">3 مرات</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 3)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              "يَا حَيُّ يَا قيُّومُ بِرَحْمَتِكَ أسْتَغِيثُ أصْلِحْ لِي شَأنِي
+              كُلَّهُ وَلاَ تَكِلْنِي إلَى نَفْسِي طَـرْفَةَ عَيْنٍ."
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="3">3 مرات</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 3)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              "اللّهُـمَّ عافِـني في بَدَنـي، اللّهُـمَّ عافِـني في سَمْـعي،
+              اللّهُـمَّ عافِـني في بَصَـري، لا إلهَ إلاّ أَنْـتَ اللّهُـمَّ
+              إِنّـي أَعـوذُ بِكَ مِنَ الْكُـفر، وَالفَـقْر، وَأَعـوذُ بِكَ مِنْ
+              عَذابِ القَـبْر، لا إلهَ إلاّ أَنْـتَ."
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="3">3 مرات</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 3)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              "سُبْحـانَ اللهِ وَبِحَمْـدِهِ عَدَدَ خَلْـقِه، وَرِضـا نَفْسِـه،
+              وَزِنَـةَ عَـرْشِـه، وَمِـدادَ كَلِمـاتِـه. "
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="3">3 مرات</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 3)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              "بِسـمِ اللهِ الذي لا يَضُـرُّ مَعَ اسمِـهِ شَيءٌ في الأرْضِ وَلا
+              في السّمـاءِ وَهـوَ السّمـيعُ العَلـيم."
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="3">3 مرات</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 3)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              " أَعـوذُ بِكَلِمـاتِ اللّهِ التّـامّـاتِ مِنْ شَـرِّ ما خَلَـق.
+              💛"
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="3">3 مرات</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 3)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              "رَضيـتُ بِاللهِ رَبَّـاً وَبِالإسْلامِ ديـناً وَبِمُحَـمَّدٍ صلى
+              الله عليه وسلم نَبِيّـاً."
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="3">3 مرات</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 3)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              "اللّهُـمَّ إِنِّـي أَمسيتُ أُشْـهِدُك، وَأُشْـهِدُ حَمَلَـةَ
+              عَـرْشِـك، وَمَلَائِكَتَكَ، وَجَمـيعَ خَلْـقِك، أَنَّـكَ أَنْـتَ
+              اللهُ لا إلهَ إلاّ أَنْـتَ وَحْـدَكَ لا شَريكَ لَـك، وَأَنَّ ُ
+              مُحَمّـداً عَبْـدُكَ وَرَسـولُـك. "
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="4">4 مرات</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 4)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              "حَسْبِـيَ اللّهُ لا إلهَ إلاّ هُوَ عَلَـيهِ تَوَكَّـلتُ وَهُوَ
+              رَبُّ العَرْشِ العَظـيم."
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="7">7 مرات</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 7)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              لَا إلَه إلّا اللهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ
+              وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلُّ شَيْءِ قَدِيرِ .
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="10">10 مرات</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 10)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              🍃 أَعُوذُ بِاللهِ مِنْ الشَّيْطَانِ الرَّجِيمِ {آمَنَ الرَّسُولُ
+              بِمَا أُنْزِلَ إِلَيْهِ مِنْ رَبِّهِ وَالْمُؤْمِنُونَ ۚ كُلٌّ
+              آمَنَ بِاللَّهِ وَمَلَائِكَتِهِ وَكُتُبِهِ وَرُسُلِهِ لَا
+              نُفَرِّقُ بَيْنَ أَحَدٍ مِنْ رُسُلِهِ ۚ وَقَالُوا سَمِعْنَا
+              وَأَطَعْنَا ۖ غُفْرَانَكَ رَبَّنَا وَإِلَيْكَ الْمَصِيرُ. ** لَا
+              يُكَلِّفُ اللَّهُ نَفْسًا إِلَّا وُسْعَهَا لَهَا مَا كَسَبَتْ
+              وَعَلَيْهَا مَا اكْتَسَبَتْ رَبَّنَا لَا تُؤَاخِذْنَا إِنْ
+              نَسِينَا أَوْ أَخْطَأْنَا رَبَّنَا وَلَا تَحْمِلْ عَلَيْنَا
+              إِصْرًا كَمَا حَمَلْتَهُ عَلَى الَّذِينَ مِنْ قَبْلِنَا رَبَّنَا
+              وَلَا تُحَمِّلْنَا مَا لَا طَاقَةَ لَنَا بِهِ وَاعْفُ عَنَّا
+              وَاغْفِرْ لَنَا وَارْحَمْنَا أَنْتَ مَوْلَانَا فَانْصُرْنَا عَلَى
+              الْقَوْمِ الْكَافِرِينَ } [البقرة 285 - 286]
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+        </div>
+        <button
+          class="reset-btn"
+          onclick="resetAzkar(this)"
+          style="margin-top: 15px; width: 100%"
+        >
+          <i class="fas fa-undo"></i> إعادة الأذكار
+        </button>
+      </section>
+      <!-- قسم الصلاة -->
+      <section id="salah" class="tab-content">
+        <div class="section-header">
+          <h2>بعد اللأذان</h2>
+        </div>
+        <div class="azkar-list">
+          <div class="azkar-item">
+            <p class="azkar-text">
+              "اللهم صلِّ على محمد وعلى آل محمد، كما صليت على إبراهيم وعلى آل
+              إبراهيم، إنك حميد مجيد، وبارك على محمد وعلى آل محمد، كما باركت على
+              إبراهيم وعلى آل إبراهيم، إنك حميد مجيد".
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge">مرة واحدة </span>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              "اللهم رب هذه الدعوة التامة، والصلاة القائمة، آتِ محمدًا الوسيلة
+              والفضيلة، وابعثه مقامًا محمودًا الذي وعدته".
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge">مرة واحدة </span>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              من قال حين يجيب المؤذن عند الشهادة: <br />
+              رضيت بالله ربًا، وبالإسلام دينًا، وبمحمد رسولًا؛ غفر له ذنبه
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge">مرة واحدة </span>
+            </div>
+          </div>
+          <div class="section-header">
+            <h2>أدعية بعد الوضوء</h2>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              أشهَدُ أنْ لا إلهَ إلَّا اللهُ، وأنَّ مُحمَّدًا عبدُ اللهِ
+              ورسولُه.
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge">مرة واحدة </span>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              اللهم اجعلني من التوابين، واجعلني من المتطهرين.
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge">مرة واحدة </span>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              سبحانك الله وبحمدك، أشهد أن لا إله إلا أنت، أستغفرك، وأتوب إليك.
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge">مرة واحدة </span>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              اللّهم اغفر لي ذنبي ووسع لي في داري وبارك لي في رزقي.
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge">مرة واحدة </span>
+            </div>
+          </div>
+          <div class="section-header">
+            <h2>أدعية استفتاح الصلاة</h2>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              اللهُ أكْبَرُ كَبِيْرًا، وَالْحَمْدُ لِلهِ كَثِيْرًا، وَسُبْحَانَ
+              اللهِ بُكْرَةً وَّاصِيْلًا.
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge">مرة واحدة </span>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              اللَّهُمَّ بَاعِدْ بَيْنِيْ وَبَيْنَ خَطَايَايَ كَمَا بَاعَدْتَ
+              بَيْنَ الْمَشْرِقِ وَالْمَغْرِبِ، اللهم نَقِّنِيْ مِنْ خَطَايَايَ
+              كَمَا يُنَقَّى الثَّوْبُ الْأبْيَضُ مِنَ الدَّنَسِ، اللهم
+              اغْسِلْنِيْ مِنْ خَطَايَايَ، بِالثَّلْجِ وَالْمَاءِ والْبَرَدِ.
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge">مرة واحدة </span>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              وَجَّهْتُ وَجْهِيَ لِلَّذِيْ فَطَرَ السَّمَوَاتِ وَالْأرْضَ
+              حَنِيْفًا وَّمَا أنَا مِنَ الْمُشْرِكِيْنَ، إِنَّ صَلَاتِيْ،
+              وَنُسُكِيْ، وَمَحْيَايَ، وَمَمَاتِيْ لِلهِ رَبِّ الْعَالَمِيْنَ،
+              لَا شَرِيْكَ لَهُ وَبِذَلِكَ أُمِرْتُ وَانَا مِنَ الْمُسْلِمِيْنَ،
+              اللهم أنْتَ الْمَلِكُ لَا إِلَهَ إِلَّا أنْتَ، أنْتَ رَبِّيْ
+              وَأنَا عَبْدُكَ، ظَلَمْتُ نَفْسِيْ وَاعْتَرَفْتُ بِذَنْبِيْ
+              فَاغْفِرْ لِيْ ذُنُوْبِيْ جَمِيْعًا إِنَّهُ لَا يَغْفِرُ الذُّنوبَ
+              إِلَّا أنْتَ. وَاهْدِنِيْ لِأحْسَنِ الْأخْلَاقِ لَا يَهْدِيْ
+              لِأحْسَنِهَا إِلَّا أنْتَ، وَاصْرِفْ عَنِّيْ سَيِّئَهَا، لَا
+              يَصْرِفُ عَنِّيْ سَيِّئَهَا إِلَّا أنْتَ، لَبَّيْكَ وَسَعْدَيْكَ،
+              وَالْخَيْرُ كُلُّهُ بِيَدَيْكَ، وَالشَّرُّ لَيْسَ إِلَيْكَ، أنَا
+              بِكَ وَإِلَيْكَ، تَبارَكْتَ وَتَعَالَيْتَ، أسْتَغْفِرُكَ وَأتُوْبُ
+              إِلَيْكَ.
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge">مرة واحدة </span>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              سُبْحَانَكَ اللهم وَبِحَمْدِكَ، وَتَبَارَكَ اسْمُكَ، وَتَعَالَى
+              جَدُّكَ، وَلَا إِلَهَ غَيْرُكَ.
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge">مرة واحدة </span>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              اللَّهُمَّ رَبَّ جَبْرَائِيلَ، وَمِيْكَائِيلَ، وَإِسْرَافِيْلَ،
+              فَاطِرَ السَّمَوَاتِ وَالْأرْضِ، عَالِمَ الغَيْبِ وَالشَّهَادَةِ
+              أنْتَ تَحْكُمُ بَيْنَ عِبَادِكَ فِيْمَا كَانُوا فِيْهِ
+              يَخْتَلِفُونَ، اِهْدِنِيْ لِمَا اخْتُلِفَ فِيْهِ مِنَ الْحَقِّ
+              بِإِذْنِكَ إِنَّكَ تَهْدِيْ مَنْ تَشَاءُ إِلَى صِرَاطٍ
+              مُّسْتَقِيْمٍ.
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge">مرة واحدة </span>
+            </div>
+          </div>
+          <div class="section-header">
+            <h2>أدعية الركوع</h2>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">سُبْحَانَ رَبِّيَ العَظِيمِ وَبِحَمْدِهِ.</p>
+            <div class="azkar-footer">
+              <span class="repeat-badge">ثلاث مرات </span>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              سُبُّوُحٌ، قُدُّوسٌ، رَبُّ المَلَائِكَةِ وَالرُّوْحِ.
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge">ثلاث مرات </span>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              اللَّهُمَّ لَكَ رَكَعْتُ، وَبِكَ آمَنْتُ، وَلَكَ أَسْلَمْتُ،
+              خَشَعَ لَكَ سَمْعِي وَبَصَرِي، وَمُخِّي وَعَظْمِي وَعَصَبِي.
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge">مرة واحدة </span>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              سُبْحَانَ ذِيْ الْجَبَرُوْتِ، وَالْمَلَكُوْتِ، وَالْكِبْرِيَاءِ،
+              وَالْعَظَمَةِ.
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge">مرة واحدة </span>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              سُبحانَكَ اللّهمَّ ربَّنا وَبِحمدِكَ، اللّهمَّ اغفِرْ لي.
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge">مرة واحدة </span>
+            </div>
+          </div>
+          <div class="section-header">
+            <h2>أدعية الرفع من الركوع</h2>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              رَبَّنَا وَلَكَ الْحَمْدُ، حَمْدًا كَثِيْرًا طَيِّبًا مُبارَكًا
+              فِيْهِ.
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge">مرة واحدة </span>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              اللَّهُمَّ رَبَّنَا لَكَ الْحَمْدُ مِلْءَ السَّمَاوَاتِ وَمِلْءَ
+              الْارْضِ، وَمَا بَيْنَهُمَا، وَمِلْءَ مَا شِئْتَ مِنْ شَيْءٍ
+              بَعْدُ، أهْلَ الثَّنَاءِ وَالْمَجْدِ، أحَقُّ مَا قَالَ الْعَبْدُ،
+              وَكُلُّنَا لَكَ عَبْدٌ، اللهم لَا مَانِعَ لِمَا أعْطَيْتَ، وَلَا
+              مُعْطِيَ لِمَا مَنَعْتَ، وَلَا يَنْفَعُ ذَا الجَدِّ مِنْكَ
+              الْجَدُّ.
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge">مرة واحدة </span>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              اللَّهُمَّ لَكَ رَكَعْتُ، وَبِكَ آمَنْتُ، وَلَكَ اسْلَمْتُ، خَشَعَ
+              لَكَ سَمْعِيْ، و بَصَـرِيْ، وَمُخِّيْ، وَعَظْمِيْ، وَعَصَبِيْ،
+              وَمَا استَقَلَّتْ بِهِ قَدَمِيْ لِلهِ رَبِّ الْعَالَمِيْنَ.
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge">مرة واحدة </span>
+            </div>
+          </div>
+          <div class="section-header">
+            <h2>أدعية السجود</h2>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">سُبْحَانَ رَبِّيَ الأعْلَى وَبِحَمْدِهِ.</p>
+            <div class="azkar-footer">
+              <span class="repeat-badge">ثلاث مرات </span>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              سُبُّوحٌ قُدُّوسٌ رَبُّ الْمَلاَئِكَةِ وَالرُّوحِ.
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge">ثلاث مرات </span>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              سُبحانَكَ اللّهمَّ ربَّنا وَبِحمدِكَ، اللّهمَّ اغفِرْ لي.
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge">مرة واحدة </span>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              سُبْحَانَ ذِي الْجَبْرُوتِ وَالْمَلَكُوتِ وَالْكِبْرِيَاءِ
+              وَالْعَظَمَةِ.
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge">مرة واحدة </span>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              اللَّهُمَّ اغْفِرْ لِي ذَنْبِي كُلَّهُ دِقَّهُ وَجِلَّهُ،
+              وَأَوَّلَهُ وَآخِرَهُ، وَعَلاَنِيَتَهُ وَسِرَّهُ.
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge">مرة واحدة </span>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              اللَّهُمَّ لَكَ سَجَدْتُّ وَبِكَ آمَنْتُ، وَلَكَ أسْلَمْتُ، سَجَدَ
+              وَجْهِي لِلَّذِيْ خَلَقَهُ، وَصَوَّرَهُ، وَشَقَّ سَمْعَهُ
+              وَبَصَرَهُ، تَبَارَكَ اللهُ أحْسَنُ الْخَالِقيْنَ.
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge">مرة واحدة </span>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              اللَّهُمَّ إِنِّيْ أعُوْذُ بِرِضَاكَ مِنْ سَخَطِكَ،
+              وَبِمُعَافَاتِكَ مِنْ عُقوْبَتِكَ، وَأعُوْذُ بِكَ مِنْكَ، لَا
+              أُحْصِـي ثَنَاءً عَلَيْكَ، أنْتَ كَمَا أثْنَيْتَ عَلَى نَفْسِكَ.
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge">مرة واحدة </span>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              رَبِّ اعْطِ نَفْسِي تَقْوَاهَا زَكِّهَا أنْتَ خَيْرُ مَنْ
+              زَكَّاهَا أنْتَ وَلِيُّهَا وَمَوْلَاهَا.
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge">مرة واحدة </span>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              اللَّهُمَّ اجْعَلْ فِي قَلْبِي نُورًا وَاجْعَلْ فِيْ سَمْعِيْ
+              نُورًا وَاجْعَلْ فِيْ بَصَرِيْ نُورًا وَاجْعَلْ مِنْ تَحْتِي
+              نُورًا وَاجْعَلْ مِنْ فَوْقِي نُورًا وَعَنْ يَمِينِي نُورًا وَعَنْ
+              يَسَارِي نُورًا وَاجْعَلْ أمَامِي نُورًا وَاجْعَلْ خَلْفِي نُورًا
+              وَأعْظِمْ لِيْ نُورًا.
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge">مرة واحدة </span>
+            </div>
+          </div>
+
+          <div class="section-header">
+            <h2>أدعية الجلوس بين سجدتين</h2>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">رَبِّ اغْفِرْ لِيْ.</p>
+            <div class="azkar-footer">
+              <span class="repeat-badge">ثلاث مرات </span>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              اللَّهُمَّ اغْفِرْ لِيْ، وَارْحَمْنِيْ، وَاهْدِنِيْ،
+              وَاجْبُرْنِيْ، وَعَافِنِيْ، وَارْزُقْنِيْ، وَارْفَعْنِيْ.
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge">ثلاث مرات </span>
+            </div>
+          </div>
+          <div class="section-header">
+            <h2>أدعية بعد التشهد الأخير وقبل السلام</h2>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              اللَّهُمَّ إِنِّيْ أعُوْذُ بِكَ مِنْ عَذَابِ الْقَبْرِ، وَمِنْ
+              عَذَابِ جَهَنَّمَ، وَمِنْ فِتْنَةِ الْمَحْيَا وَالْمَمَاتِ، وَمِنْ
+              شَرِّ فِتْنَةِ الْمَسِيْحِ الدَّجَّالِ.
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge">مرة واحدة </span>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              اللَّهُمَّ إِنِّي ظَلَمْتُ نَفْسِي ظُلْماً كَثِيراً ، وَلاَ
+              يَغْفِرُ الذُّنُوبَ إِلاَّ أَنْتَ. فَاغْفِرْ لِي مَغْفِرَةً مِنْ
+              عِنْدِكَ وَارْحَمْنِي، إِنَّكَ أَنْتَ الْغَفُورُ الرَّحِيمُ.
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge">مرة واحدة </span>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              اللَّهُمَّ اغْفِرْ لِي مَا قَدَّمْتُ وَمَا أَخَّرْتُ. وَمَا
+              أَسْرَرْتُ وَمَا أَعْلَنْتُ. وَمَا أَسْرَفْتُ. وَمَا أَنْتَ
+              أَعْلَمُ بِهِ مِنِّي. أَنْتَ الْمُقَدِّمُ وَأَنْتَ الْمُؤَخِّرُ.
+              لاَ إِلهَ إِلاَّ أَنْتَ.
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge">مرة واحدة </span>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الآخِرَةِ حَسَنَةً
+              وَقِنَا عَذَابَ النَّارِ.
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge">مرة واحدة </span>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              اللَّهُمَّ إِنِّيْ أسْألُكَ يَا أللهُ بِأنَّكَ الْوَاحِدُ الْأحَدُ
+              الصَّمَدُ الَّذِيْ لَمْ يَلِدْ وَلَمْ يُوْلَدْ، وَلَمْ يَكنْ لَهُ
+              كُفُوًا أحَدٌ، أنْ تَغْفِرَ لِيْ ذُنُوْبِيْ إِنَّكَ أنْتَ
+              الْغَفُوْرُ الرَّحِيْمُ.
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge">مرة واحدة </span>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              اللَّهُمَّ إِنِّيْ أسْألُكَ بِأنَّ لَكَ الْحَمْدُ لَا إِلَهَ
+              إِلَّا أنْتَ وَحْدَكَ لَا شَرِيْكَ لَكَ، الْمَنَّانُ، يَا بَدِيعَ
+              السَّمَوَاتِ وَالْارْضِ يَا ذَا الْجَلَالِ وَالْإِكْرَامِ، يَا
+              حَيُّ يَا قَيُّومُ إِنِّيْ أسْألُكَ الْجَنَّةَ وَأعُوْذُ بِكَ مِنَ
+              النَّارِ.
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge">مرة واحدة </span>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              اللَّهُمَّ بِعِلْمِكَ الغَيْبَ وَقُدْرَتِكَ عَلَى الْخَلْقِ
+              أحْيِنِيْ مَا عَلِمْتَ الْحَيَاةَ خَيْرًا لِيْ، وَتَوَفَّنِيْ
+              إِذَا عَلِمْتَ الْوَفَاةَ خَيْرًا لِيْ، اللهم إِنِّيْ أسْألُكَ
+              خَشْيَتَكَ فِيْ الْغَيْبِ وَالشَّهَادَةِ، وَأسْألُكَ كَلِمَةَ
+              الْحَقِّ فِي الرِّضَا وَالْغَضَبِ، وَأسْألُكَ الْقَصْدَ فِيْ
+              الْغِنَى وَالْفَقْرِ، وَأسْألُكَ نَعِيْمًا لَا يَنْفَدُ،
+              وَأسْألُكَ قُرَّةَ عَيْنٍ لَا تَنْقَطِعُ، وَأسْألُكَ الرِّضَا
+              بَعْدَ الْقَضَاءِ، وَأسْألُكَ بَرْدَ الْعَيْشِ بَعْدَ الْمَوْتِ،
+              وَأسْألُكَ لَذَّةَ النَّظَرِ إِلَى وَجْهِكَ، وَالشَّوْقَ إِلَى
+              لِقائِكَ فِيْ غَيْرِ ضَرَّاءَ مُضِرَّةٍ، وَلَا فِتْنَةٍ مُضِلَّةٍ،
+              اللهم زَيِّنَّا بِزِينَةِ الْإِيْمَانِ، وَاجْعَلْنَا هُدَاةً
+              مُهْتَدِيْنَ.
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge">مرة واحدة </span>
+            </div>
+          </div>
+        </div>
+      </section>
+           <!-- تبويب أذكار بعد الصلاة -->
+      <section id="post-salah" class="tab-content">
+        <div class="section-header">
+          <h2>أذكار بعد الصلاة المكتوبة</h2>
+          <p>استغفر واذكر الله بعد الانتهاء من الفريضة</p>
+        </div>
+
+        <div class="azkar-list">
+          <div class="azkar-item">
+            <p class="azkar-text">أستغفرُ الله.</p>
+            <div class="azkar-footer">
+              <span class="repeat-badge">3 مرات</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 3)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+
+          <div class="azkar-item">
+            <p class="azkar-text">اللهم أعنِّي على ذكرك وشكرك وحسن عبادتك</p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              اللَّهُمَّ أَنْتَ السَّلاَمُ وَمِنْكَ السَّلاَمُ، تَبَارَكْتَ يَا
+              ذَا الجَلاَلِ وَالإِكْرَامِ.
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              لاَ إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ لاَ شَرِيكَ لَهُ، لَهُ المُلْكُ
+              وَلَهُ الحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ، اللَّهُمَّ لاَ
+              مَانِعَ لِمَا أَعْطَيْتَ، وَلاَ مُعْطِيَ لِمَا مَنَعْتَ، وَلاَ
+              يَنْفَعُ ذَا الجَدِّ مِنْكَ الجَدُّ.
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+
+          <div class="azkar-item">
+            <p class="azkar-text">
+              لاَ إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ لاَ شَرِيكَ لَهُ، لَهُ المُلْكُ
+              وَلَهُ الحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ، لاَ حَوْلَ
+              وَلاَ قُوَّةَ إِلاَّ بِاللَّهِ، لاَ إِلَهَ إِلاَّ اللَّهُ، وَلاَ
+              نَعْبُدُ إِلاَّ إِيَّاهُ، لَهُ النِّعْمَةُ وَلَهُ الفَضْلُ، وَلَهُ
+              الثَّنَاءُ الحَسَنُ، لاَ إِلَهَ إِلاَّ اللَّهُ مُخْلِصِينَ لَهُ
+              الدِّينَ وَلَوْ كَرِهَ الكَافِرُونَ.
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+
+          <div class="azkar-item">
+            <p class="azkar-text">
+              سبحان الله (33 مرة) | الحمد لله (33 مرة) | الله أكبر (33 مرة)
+              <br />
+              ثم تمام المائة: «لاَ إِلَهَ إِلاَّ اللَّهُ وَحْدَهُ لاَ شَرِيكَ
+              لَهُ، لَهُ المُلْكُ وَلَهُ الحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ
+              قَدِيرٌ».
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge">99 مرة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 99)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+
+          <div class="azkar-item">
+            <p class="azkar-text">
+              أَعُوذُ بِاللهِ مِنْ الشَّيْطَانِ الرَّجِيمِ بسم الله الرحمن
+              الرحيم اللّهُ لاَ إِلَـهَ إِلاَّ هُوَ الْحَيُّ الْقَيُّومُ لاَ
+              تَأْخُذُهُ سِنَةٌ وَلاَ نَوْمٌ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا
+              فِي الأَرْضِ مَن ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلاَّ بِإِذْنِهِ
+              يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ وَلاَ يُحِيطُونَ
+              بِشَيْءٍ مِّنْ عِلْمِهِ إِلاَّ بِمَا شَاء وَسِعَ كُرْسِيُّهُ
+              السَّمَاوَاتِ وَالأَرْضَ وَلاَ يَؤُودُهُ حِفْظُهُمَا وَهُوَ
+              الْعَلِيُّ الْعَظِيمُ.
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+
+          <div class="azkar-item">
+            <p class="azkar-text">
+              بِسْمِ اللهِ الرَّحْمنِ الرَّحِيم قُلْ هُوَ ٱللَّهُ أَحَدٌ،
+              ٱللَّهُ ٱلصَّمَدُ، لَمْ يَلِدْ وَلَمْ يُولَدْ، وَلَمْ يَكُن لَّهُۥ
+              كُفُوًا أَحَدٌۢ. ...بعد صلاتي الفجر والمغرب...
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge">3 مرات</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 3)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+
+          <div class="azkar-item">
+            <p class="azkar-text">
+              بِسْمِ اللهِ الرَّحْمنِ الرَّحِيم قُلْ أَعُوذُ بِرَبِّ ٱلْفَلَقِ،
+              مِن شَرِّ مَا خَلَقَ، وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ، وَمِن
+              شَرِّ ٱلنَّفَّٰثَٰتِ فِى ٱلْعُقَدِ، وَمِن شَرِّ حَاسِدٍ إِذَا
+              حَسَدَ. ...بعد صلاتي الفجر والمغرب...
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge">3 مرات</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 3)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+
+          <div class="azkar-item">
+            <p class="azkar-text">
+              قُلْ أَعُوذُ بِرَبِّ ٱلنَّاسِ، مَلِكِ ٱلنَّاسِ، إِلَٰهِ ٱلنَّاسِ،
+              مِن شَرِّ ٱلْوَسْوَاسِ ٱلْخَنَّاسِ، ٱلَّذِى يُوَسْوِسُ فِى صُدُورِ
+              ٱلنَّاسِ، مِنَ ٱلْجِنَّةِ وَٱلنَّاسِ. ...بعد صلاتي الفجر
+              والمغرب...
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge">3 مرات</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 3)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+        </div>
+        <button
+          class="reset-btn"
+          onclick="resetAzkar(this)"
+          style="margin-top: 15px; width: 100%"
+        >
+          <i class="fas fa-undo"></i> إعادة الأذكار
+        </button>
+      </section>
+      <!-- 1. تبويب أذكار النوم -->
+      <section id="sleep-azkar" class="tab-content">
+        <div class="section-header">
+          <h2>أذكار النوم</h2>
+          <p>الحصن قبل النوم</p>
+        </div>
+        <div class="azkar-sleep">
+          <div class="azkar-sitem">
+            <p class="azkar-text">
+              قراءة آية الكرسي، وسورة الإخلاص، والمعوذتين (ينفث في كفيه ثلاثاً
+              ويقسحهما على جسده).
+            </p>
+            <div class="azkar-sfooter">
+              <span class="repeat-badge" data-count="3">3 مرات</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 3)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-sitem">
+            <p class="azkar-text">اللهم قني عذابك يوم تبعث عبادك.</p>
+            <div class="azkar-sfooter">
+              <span class="repeat-badge" data-count="3">3 مرات</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 3)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-sitem">
+            <p class="azkar-text">
+              أستغفر اللّه الذي لا إله إلا هو الحي القيوم وأتوب إليه
+            </p>
+            <div class="azkar-sfooter">
+              <span class="repeat-badge" data-count="3">3 مرات</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 3)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-sitem">
+            <p class="azkar-text">
+              باسمك ربي وضعت جنبي، وبك أرفعه، إن أمسكت نفسي فارحمها، وإن أرسلتها
+              فاحفظها بما تحفظ به عبادك الصالحين.
+            </p>
+            <div class="azkar-sfooter">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-sitem">
+            <p class="azkar-text">
+              اللَّهُمَّ رَبَّ السَّمَاوَاتِ السَّبْعِ وَرَبَّ الْأَرْضِ وَرَبَّ
+              الْعَرْشِ الْعَظِيمِ، رَبَّنَا وَرَبَّ كُلِّ شَيْءٍ، فَالِقَ
+              الْحَبِّ وَالنَّوَى، وَمُنْزِلَ التَّوْرَاةِ وَالْإِنْجِيلِ
+              وَالْفُرْقَانِ، أَعُوذُ بِكَ مِنْ شَرِّ كُلِّ شَيْءٍ أَنْتَ آخِذٌ
+              بِنَاصِيَتِهِ. اللَّهُمَّ أَنْتَ الْأَوَّلُ فَلَيْسَ قَبْلَكَ
+              شَيْءٌ، وَأَنْتَ الْآخِرُ فَلَيْسَ بَعْدَكَ شَيْءٌ، وَأَنْتَ
+              الظَّاهِرُ فَلَيْسَ فَوْقَكَ شَيْءٌ، وَأَنْتَ الْبَاطِنُ فَلَيْسَ
+              دُونَكَ شَيْءٌ، اقْضِ عَنَّا الدَّيْنَ، وَأَغْنِنَا مِنَ الْفَقْرِ
+              .
+            </p>
+            <div class="azkar-sfooter">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-sitem">
+            <p class="azkar-text">
+              اللهم أنت خلقت نفسي وأنت تتوفاها، لك مماتها ومحياها، إن أحييتها
+              فاحفظها، وإن أمتها فاغفر لها، اللهم إني أسألك العافية.
+            </p>
+            <div class="azkar-sfooter">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-sitem">
+            <p class="azkar-text">باسمك اللهم أموت وأحيا</p>
+            <div class="azkar-sfooter">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-sitem">
+            <p class="azkar-text">
+              الحمد لله الذي أطعمنا وسقانا وكفانا وآوانا فكم ممن لا كافي له ولا
+              مؤوي.
+            </p>
+            <div class="azkar-sfooter">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-sitem">
+            <p class="azkar-text">
+              اللهم أسلمت نفسي إليك وفوضت أمري إليك ووجهت وجهي إليك رغبةً ورهبةً
+              إليك لا ملجأ ولا منجا منك إلا إليك آمنت بكتابك الذي أنزلت وبنبيك
+              الذي أرسلت
+            </p>
+            <div class="azkar-sfooter">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-sitem">
+            <p class="azkar-text">
+              اللهم رب السموات السبع وما أظلت ورب الأرضين وما أقلت ورب الشياطين
+              وما أضلت كن لي جارا من خلقك كلهم جميعا أن يفرط على أحد منهم أو أن
+              يبغي علي عز جارك وجل ثناؤك ولا إله غيرك ولا إله إلا أنت
+            </p>
+            <div class="azkar-sfooter">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-sitem">
+            <p class="azkar-text">سبحان اللّه</p>
+            <div class="azkar-sfooter">
+              <span class="repeat-badge" data-count="33"> ثلاثاً وثلاثين</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 33)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-sitem">
+            <p class="azkar-text">الحمد اللّه</p>
+            <div class="azkar-sfooter">
+              <span class="repeat-badge" data-count="33"> ثلاثاً وثلاثين</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 33)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-sitem">
+            <p class="azkar-text">اللّه أكبر</p>
+            <div class="azkar-sfooter">
+              <span class="repeat-badge" data-count="34"> أربعاً وثلاثين</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 34)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-sitem">
+            <p class="azkar-text">قراءة سورة الملك</p>
+            <div class="azkar-sfooter">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <button
+          class="reset-btn"
+          onclick="resetAzkar(this)"
+          style="margin-top: 15px; width: 100%"
+        >
+          <i class="fas fa-undo"></i> إعادة الأذكار
+        </button>
+      </section>
+      <!-- 2. تبويب أدعية من القرآن الكريم -->
+      <section id="quran-duaa" class="tab-content">
+        <div class="section-header">
+          <h2>أدعية متنوعة</h2>
+        </div>
+        <div class="azkar-list">
+          <div class="azkar-item">
+            <p class="azkar-text">
+              كفارة المجلس:<br />
+              سبحانك اللهم وبحمدك أشهد ألا إله إلا أنت استغفرك واتوب اليك.<br />
+              وَٱلۡعَصۡرِ (1) إِنَّ ٱلۡإِنسَٰنَ لَفِي خُسۡرٍ (2) إِلَّا
+              ٱلَّذِينَ ءَامَنُواْ وَعَمِلُواْ ٱلصَّٰلِحَٰتِ وَتَوَاصَوۡاْ
+              بِٱلۡحَقِّ وَتَوَاصَوۡاْ بِٱلصَّبۡرِ(3)
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> اذكر
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              بعد الانتهاءمن قراءة القرآن:<br />
+              سبحانك اللهم وبحمدك أشهد أن لا إله إلا أنت أستغفرك وأتوب إليك.
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> اذكر
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              بعد الأكل:<br />
+              الحمدلله الذي أطعمني هذا الطعام ورزقنيه من غير حول مني ولا قوة .
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> اذكر
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <ul class="azkar-text">
+              <li class="azkar-text">استغفر الله لكل ذنب أذنبته</li>
+              <li class="azkar-text">استغفر الله لكل ذنب سمعته</li>
+              <li class="azkar-text">استغفر الله لكل ذنب رئيته</li>
+              <li class="azkar-text">استغفر الله لكل ذنب يضاعف السيئات</li>
+              <li class="azkar-text">استغفر الله لكل ذنب يمحي الحسنات</li>
+              <li class="azkar-text">استغفر الله لكل ذنب يقربني من النار</li>
+              <li class="azkar-text">استغفر الله لكل ذنب يبعدني عن الجنة</li>
+              <li class="azkar-text">استغفر الله لكل ذنب عظيم</li>
+              <li class="azkar-text">استغفر الله لكل مؤمن أهنته</li>
+              <li class="azkar-text">استغفر الله لكل إنسان ظلمته</li>
+              <li class="azkar-text">استغفر الله لكل زور نطقته</li>
+              <li class="azkar-text">استغفر الله لكل عهد خنته</li>
+              <li class="azkar-text">استغفر الله لكل باطل اتبعته</li>
+            </ul>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> اذكر
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              سبحان الله عدد ما خلق، سبحان الله ملء ما خلق، سبحان الله عدد ما في
+              الأرض والسماء، سبحان الله ملء ما في الأرض والسماء، سبحان الله عدد
+              ما أحصى كتابه، سبحان الله ملء ما احصى كتابه سبحان الله عدد كل شيء
+              سبحان الله ملء كل شيء،
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> اذكر
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              اللّهم اغفر للمؤمنين والمؤمنات والمسلمين والمسلمات الأحياء منهم
+              والأموات.
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> اذكر
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              الحمدلله عدد ما خلق، الحمدلله ملء ما خلق، الحمدلله عدد ما في الأرض
+              والسماء، الحمدلله ملء ما في الأرض والسماء، الحمدلله عدد ما أحصى
+              كتابه، الحمدلله ملء ما احصى كتابه ، عدد كل شيء الحمدلله ملء كل شيء
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> اذكر
+              </button>
+            </div>
+          </div>
+          <div class="section-header">
+            <h2>أدعية من القرآن الكريم</h2>
+            <p>من كلام الله عز وجل</p>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              ﴿رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً
+              وَقِنَا عَذَابَ النَّارِ﴾ [البقرة: 201].
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> اذكر
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              ﴿رَبَّنَا لَا تُزِغْ قُلُوبَنَا بَعْدَ إِذْ هَدَيْتَنَا وَهَبْ
+              لَنَا مِن لَّدُنكَ رَحْمَةً ۚ إِنَّكَ أَنتَ الْوَهَّابُ﴾
+              <br />
+              [آل عمران: 8]
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              " رَبَّنَا اغْفِرْ لِي وَلِوَالِدَيَّ وَلِلْمُؤْمِنِينَ يَوْمَ
+              يَقُومُ الْحِسَابُ " [إبراهيم: 41].
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              ﴿رَبَّنَا ظَلَمْنَا أَنفُسَنَا وَإِن لَّمْ تَغْفِرْ لَنَا
+              وَتَرْحَمْنَا لَنَكُونَنَّ مِنَ الْخَاسِرِينَ﴾ <br />[الأعراف: 23]
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> اذكر
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              " رَبَّنَا لَا تُؤَاخِذْنَا إِنْ نَسِينَا أَوْ أَخْطَأْنَا "
+              [البقرة: 286].
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> اذكر
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              " رَبِّ هَبْ لِي مِنْ لَدُنْكَ ذُرِّيَّةً طَيِّبَةً إِنَّكَ
+              سَمِيعُ الدُّعَاءِ " [آل عمران: 38].
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> اذكر
+              </button>
+            </div>
+          </div>
+
+          <div class="azkar-item">
+            <p class="azkar-text">
+              " رَبَّنَا اغْفِرْ لَنَا ذُنُوبَنَا وَإِسْرَافَنَا فِي أَمْرِنَا
+              وَثَبِّتْ أَقْدَامَنَا وَانْصُرْنَا عَلَى الْقَوْمِ الْكَافِرِينَ
+              " [آل عمران: 147].
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> اذكر
+              </button>
+            </div>
+          </div>
+
+          <div class="azkar-item">
+            <p class="azkar-text">
+              " " رَبَّنَا وَآتِنَا مَا وَعَدْتَنَا عَلَى رُسُلِكَ وَلَا
+              تُخْزِنَا يَوْمَ الْقِيَامَةِ إِنَّكَ لَا تُخْلِفُ الْمِيعَادَ "
+              [آل عمران: 194]."
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> اذكر
+              </button>
+            </div>
+          </div>
+
+          <div class="azkar-item">
+            <p class="azkar-text">
+              ﴿رَبِّ هَبْ لِي مِن لَّدُنكَ ذُرِّيَّةً طَيِّبَةً ۖ إِنَّكَ
+              سَمِيعُ الدُّعَاءِ﴾ [آل عمران: 38].
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> اذكر
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              ﴿رَبَّنَا أَفْرِغْ عَلَيْنَا صَبْرًا وَثَبِّتْ أَقْدَامَنَا
+              وَانصُرْنَا عَلَى الْقَوْمِ الْكَافِرِينَ﴾ [البقرة: 250].
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> اذكر
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              ﴿رَبِّ اشْرَحْ لِي صَدْرِي * وَيَسِّرْ لِي أَمْرِي﴾ [طه: 25-26].
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> اذكر
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="section-header">
+          <h2>أدعية مأثورة عن النبي ﷺ</h2>
+        </div>
+        <div class="azkar-item">
+          <p class="azkar-text">
+            أشهَدُ أنْ لا إلَهَ إلَّا اللهُ وحدَه لا شَريك له، وأنَّ مُحَمَّدًا
+            عَبدُه ورَسولُه، وأنَّ عيسى عبدُ اللهِ، وابنُ أَمَتِه، وكَلِمَتُه
+            ألقاها إلى مَريَمَ وروحٌ منه، وأنَّ الجَنَّةَ حَقٌّ، وأنَّ النَّارَ
+            حَقٌّ
+          </p>
+          <div class="azkar-footer">
+            <span class="repeat-badge" data-count="1">مرة واحدة</span>
+            <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+              <i class="fas fa-fingerprint"></i> اذكر
+            </button>
+          </div>
+        </div>
+        <div class="azkar-item">
+          <p class="azkar-text">
+            اللهم إني أسألُك بأني أشهدُ أنك أنت اللهُ لا إلَه إلا أنتَ الأحدُ
+            الصمدُ الذي لم يلدْ ولم يولدْ ولم يكن له كُفُوًا أحدٌ.<br />
+            لقد سألَ اللهَ باسمِه الأعظمِ الذي إذا دُعيَ به أجابَ وإذا سُئِلَ به
+            أعطى.
+          </p>
+          <div class="azkar-footer">
+            <span class="repeat-badge" data-count="1">مرة واحدة</span>
+            <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+              <i class="fas fa-fingerprint"></i> اذكر
+            </button>
+          </div>
+        </div>
+        <div class="azkar-list">
+          <div class="azkar-item">
+            <p class="azkar-text">اللهم إنك عفو تحب العفو فاعف عني.</p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> اذكر
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">اللهم إني أسألك الهدى والتقى والعفاف والغنى.</p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> اذكر
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              اللّهـمَّ إنّي أَعـوذُ بِكَ من الهدم وأعوذ بك من التردي وَأَعُوذُ
+              بك من الغرق والحرق والهرم وَأَعـوذُ بك أن يتخبطني الشيطان عند
+              الموت وَأَعـوذُ بك أن أموت في سبيلك مدبراً وَأَعـوذُبك أن أموت
+              لديغاً.
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> اذكر
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">اللهم مصرف القلوب صرف قلوبنا على طاعتك.</p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> اذكر
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">اللَّهمَّ مغفرتُك أوسعُ من ذنوبي ورحمتُك أرجَى عندي من عملي</p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="1"> ثلاث مرات</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 3)">
+                <i class="fas fa-fingerprint"></i> اذكر
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              اللَّهُمَّ إِنِّي أَسْأَلُكَ زِيَادَةً فِي الدِّينِ، وَبَرَكَةً
+              فِي الْعُمْرِ، وَصِحَّةً فِي الْجَسَدِ، وَسَعَةً فِي الرِّزْقِ،
+              وَتَوْبَةً قَبْلَ الْمَوْتِ، وَرَحْمَةً عِنْدَ الْمَوْتِ،
+              وَمَغْفِرَةً بَعْدَ الْمَوْتِ، وَعَفْوًا عِنْدَ الْحِسَابِ،
+              وَأَمَانًا مِنَ الْعَذَابِ.
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> اذكر
+              </button>
+            </div>
+          </div>
+
+          <div class="azkar-item">
+            <p class="azkar-text">
+              اللهم إني أعوذ بك من العجز والكسل والجبن والبخل والهرم وعذاب
+              القبر.
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> اذكر
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              “اللهم إني أسألك من الخير كله عاجله وآجله ما علمت منه وما لم أعلم
+              وأعوذ بك من الشر كله عاجله وآجله ما علمت منه وما لم أعلم اللهم إني
+              أسألك من خير ما سألك عبدك ونبيك وأعوذ بك من شر ما عاذ به عبدك
+              ونبيك اللهم إني أسألك الجنة وما قرب إليها من قول أو عمل وأعوذ بك
+              من النار وما قرب إليها من قول أو عمل وأسألك أن تجعل كل قضاء قضيته
+              لي خيرا”.
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> اذكر
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              “اللهم إني أعوذ بك من الفقر والقلة والذلة وأعوذ بك من أن أظلم أو
+              أظلم”.
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> اذكر
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">“اللهم إني أعوذ بك من البرص والجنون والجذام ومن سيئ الأسقام”.</p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> اذكر
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              اللهم إني أعوذ بك من زوال نعمتك، وتحول عافيتك وفجاءة نقمتك، وجميع
+              سخطك
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> اذكر
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              اللهم إني ظلمت نفسي ظلما كثيرا ولا يغفر الذنوب إلا أنت، فاغفر لي
+              مغفرة من عندك وارحمني، إنك أنت الغفور الرحيم.
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> اذكر
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <button
+          class="reset-btn"
+          onclick="resetAzkar(this)"
+          style="margin-top: 15px; width: 100%"
+        >
+          <i class="fas fa-undo"></i> إعادة الأذكار
+        </button>
+      </section>
+      <!-- تبويب مشاركة الأجر الجديد -->
+      <section id="share-page" class="tab-content">
+        <div class="section-header">
+          <h2>شارك الصفحة ليعم الأجر</h2>
+        </div>
+
+        <div class="share-container">
+          <!-- 1. زر الواتساب -->
+          <button onclick="shareWhatsApp()" class="share-btn btn-whatsapp">
+            <i class="fab fa-whatsapp"></i> انشرها ولك الأجر
+          </button>
+
+          <!-- 2. زر المشاركة العام (Web Share API) -->
+          <button onclick="nativeShare()" class="share-btn btn-main-share">
+            <i class="fas fa-share-alt"></i> مشاركة
+          </button>
+
+          <!-- 3. الصف الأول من الأزرار الصغرى -->
+          <div class="buttons-row">
+            <button onclick="shareTwitter()" class="icon-btn btn-twitter">
+              <i class="fab fa-twitter"></i>
+            </button>
+            <button onclick="shareFacebook()" class="small-btn btn-facebook">
+              شارك على فيس بوك <i class="fab fa-facebook-f"></i>
+            </button>
+            <button onclick="copyShareLink()" class="small-btn btn-copy">
+              نسخ الرابط (مختصر)
+            </button>
+          </div>
+          <!-- 4. الصف الثاني من الأزرار الصغرى (بعد إزالة مكتبتي الإسلامية) -->
+          <div class="buttons-row bottom-row">
+            <button onclick="shareTelegram()" class="icon-btn btn-telegram">
+              <i class="fab fa-telegram-plane"></i>
+            </button>
+            <button onclick="shareMessenger()" class="small-btn btn-messenger">
+              شارك على مسنجر <i class="fab fa-facebook-messenger"></i>
+            </button>
+          </div>
+        </div>
+      </section>
+      <!-- قسم القرآن -->
+      <section id="quran" class="tab-content">
+        <div class="section-header">
+          <h2>تلاوات قرآنية</h2>
+          <p>اختر القارئ والسورة بنية الصدقة</p>
+        </div>
+
+        <div class="quran-card">
+          <!-- اختيار القارئ -->
+          <div class="quran-field">
+            <label for="reciter">اختر القارئ:</label>
+            <select id="reciter" class="quran-select" onchange="updateAudio()">
+              <option value="https://server8.mp3quran.net/afs/">
+                مشاري العفاسي
+              </option>
+              <option value="https://server12.mp3quran.net/maher/">
+                ماهر المعيقلي
+              </option>
+              <option value="https://server7.mp3quran.net/basit/">
+                عبد الباسط عبد الصمد
+              </option>
+              <option value="https://server13.mp3quran.net/husr/">
+                محمود خليل الحصري
+              </option>
+              <option value="https://server12.mp3quran.net/tblawi/">
+                محمد محمود الطبلاوي
+              </option>
+              <option value="https://server10.mp3quran.net/minsh/">
+                محمد صديق المنشاوي
+              </option>
+            </select>
+          </div>
+
+          <!-- اختيار السورة -->
+          <div class="quran-field">
+            <label for="surah">اختر السورة:</label>
+            <select id="surah" class="quran-select" onchange="updateAudio()">
+              <option value="001.mp3">سورة الفاتحة</option>
+              <option value="002.mp3">سورة البقرة</option>
+              <option value="003.mp3">سورة آل عمران</option>
+              <option value="036.mp3">سورة يس</option>
+              <option value="044.mp3">سورة الدخان</option>
+              <option value="056.mp3">سورة الواقعة</option>
+              <option value="067.mp3">سورة الملك</option>
+              <option value="018.mp3">سورة الكهف</option>
+              <option value="055.mp3">سورة الرحمن</option>
+              <option value="112.mp3">سورة الإخلاص</option>
+              <option value="113.mp3">سورة الفلق</option>
+              <option value="114.mp3">سورة الناس</option>
+            </select>
+          </div>
+
+          <!-- مشغل الصوت -->
+          <div class="quran-audio-wrap">
+            <audio id="quran-player" controls>
+              <source
+                src="https://server8.mp3quran.net/afs/001.mp3"
+                type="audio/mpeg"
+              />
+              متصفحك لا يدعم مشغل الصوت.
+            </audio>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- زر الصعود لأعلى -->
+    <button
+      id="scrollToTopBtn"
+      onclick="scrollToTop()"
+      style="
+        display: none;
+        position: fixed;
+        bottom: 30px;
+        left: 30px;
+        z-index: 999;
+        border: none;
+        outline: none;
+        background-color: var(--primary-color);
+        color: white;
+        cursor: pointer;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        font-size: 20px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        transition:
+          background-color 0.3s,
+          transform 0.3s;
+      "
+    >
+      <i class="fas fa-arrow-up"></i>
+    </button>
+    <script src="script.js"></script>
+    <script>
+      // كود تشغيل القرآن
+      function updateAudio() {
+        const reciterSelect = document.getElementById("reciter");
+        const surahSelect = document.getElementById("surah");
+        const audioPlayer = document.getElementById("quran-player");
+        audioPlayer.src = reciterSelect.value + surahSelect.value;
+        audioPlayer.play();
+
+        // تحديث النص تلقائياً إذا كان المستخدم يقرأ وغيّر السورة
+        if (
+          document
+            .getElementById("surah-text-container")
+            .classList.contains("open")
+        ) {
+          loadSurahText();
+        }
+      }
+      let originalAzkarMap = new Map();
+
+      document.addEventListener("DOMContentLoaded", () => {
+        document
+          .querySelectorAll(".azkar-list, .azkar-sleep")
+          .forEach((list) => {
+            originalAzkarMap.set(list, list.innerHTML);
+          });
+      });
+
+      function resetAzkar(btn) {
+        // 1. البحث عن التبويبة الأب التي يتواجد فيها الزر فقط
+        const currentTab = btn.closest(".tab-content");
+
+        if (!currentTab) return;
+
+        // 2. تطبيق الإعادة فقط على القوائم الموجودة داخل هذه التبويبة
+        currentTab
+          .querySelectorAll(".azkar-list, .azkar-sleep")
+          .forEach((list) => {
+            if (originalAzkarMap.has(list)) {
+              list.innerHTML = originalAzkarMap.get(list);
+            }
+          });
+      }
+      // كود إظهار وإخفاء زر الصعود لأعلى
+      window.onscroll = function () {
+        let topBtn = document.getElementById("scrollToTopBtn");
+        // يظهر الزر عندما ينزل المستخدم 300 بيكسل للأسفل
+        if (
+          document.body.scrollTop > 300 ||
+          document.documentElement.scrollTop > 300
+        ) {
+          topBtn.style.display = "block";
+        } else {
+          topBtn.style.display = "none";
+        }
+      };
+
+      // كود الصعود لأعلى بنعومة عند الضغط على الزر
+      function scrollToTop() {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth", // الصعود بشكل ناعم وليس مفاجئاً
+        });
+      }
+
+      // تأثير حركة بسيط عند مرور الماوس على الزر
+      const topBtnElement = document.getElementById("scrollToTopBtn");
+      topBtnElement.addEventListener("mouseover", function () {
+        this.style.backgroundColor = "var( --primary-color)";
+        this.style.transform = "scale(1.1)";
+      });
+      topBtnElement.addEventListener("mouseout", function () {
+        this.style.backgroundColor = "var( --primary-color)";
+        this.style.transform = "scale(1)";
+      });
+
+      // تسجيل Service Worker عشان الموقع يشتغل من غير إنترنت
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", () => {
+          navigator.serviceWorker
+            .register("./sw.js")
+            .catch((err) => console.log("SW registration failed:", err));
+        });
+      }
+    </script>
+  </body>
+</html>
