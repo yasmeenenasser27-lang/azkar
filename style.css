@@ -1,22 +1,22 @@
 :root {
-  /* ألوان الوضع الفاتح (الافتراضي) */
+  /* ألوان الوضع الفاتح (الافتراضي) - أزرق */
   --bg-color: #f4f7f6;
   --text-color: #222c2e;
   --card-bg: #ffffff;
-  --primary-color: #611075; /* #059669 أخضر زيتي مريح */
-  --secondary-color: #8e34c5; /* #10b981*/
+  --primary-color: #007bff; /* أزرق فاتح مريح */
+  --secondary-color: #0066cc; /* أزرق داكن */
   --accent-color: #d4af37; /* ذهبي هادئ */
   --circle-bg: #e5e7eb;
   --border-color: #e2e8f0;
 }
 
 .dark-mode {
-  /* ألوان الوضع الداكن */
+  /* ألوان الوضع الداكن - بنفسجي */
   --bg-color:   #191627;
   --text-color: #f3f4f6;
   --card-bg:#130f26;
-  --primary-color: #003591;
-  --secondary-color: #276ef1;
+  --primary-color: #7c3aed; /* بنفسجي جميل */
+  --secondary-color: #6366f1; /* بنفسجي أفتح */
   --accent-color: #fbbf24;
   --circle-bg: #374151;
   --border-color: #374151;
