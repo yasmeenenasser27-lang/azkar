@@ -3,11 +3,15 @@
   --bg-color: #f4f7f6;
   --text-color: #222c2e;
   --card-bg: #ffffff;
-  --primary-color: #007bff; /* أزرق فاتح مريح */
-  --secondary-color: #0066cc; /* أزرق داكن */
+  --primary-color:#8104b2 ; /* أزرق فاتح مريح */
+  --secondary-color: #ba0fd8; /* أزرق داكن */
   --accent-color: #d4af37; /* ذهبي هادئ */
   --circle-bg: #e5e7eb;
   --border-color: #e2e8f0;
+
+  /* ضفنا المتغير هنا لحجم الخط الأساسي */
+  --base-font-size: 16px;
+  font-size: var(--base-font-size);
 }
 
 .dark-mode {
@@ -15,8 +19,8 @@
   --bg-color:   #191627;
   --text-color: #f3f4f6;
   --card-bg:#130f26;
-  --primary-color: #7c3aed; /* بنفسجي جميل */
-  --secondary-color: #6366f1; /* بنفسجي أفتح */
+  --primary-color: #0037ff; /* بنفسجي جميل */
+  --secondary-color: #6567ea; /* بنفسجي أفتح */
   --accent-color: #fbbf24;
   --circle-bg: #374151;
   --border-color: #374151;
@@ -27,7 +31,7 @@
 body {
   background-color: var(--bg-color);
   color: var(--text-color);
-  transition: background 0.3s, color 0.3s;
+  transition: background 0.3s, color 0.3s, font-size 0.2s; /* ضفنا تأثير للحجم */
   padding-bottom: 50px;
 }
 
@@ -39,7 +43,13 @@ body {
   transition: background 0.3s;
 }
 .nav-brand { font-family: 'Amiri', serif; font-size: 1.5rem; font-weight: 700; color: var(--primary-color); }
-.theme-btn { background: none; border: none; font-size: 1.4rem; color: var(--text-color); cursor: pointer; outline: none; }
+.theme-btn { background: none; border: none; font-size: 1.4rem; color: var(--text-color); cursor: pointer; outline: none; margin-left: 10px; }
+
+/* ضفنا تنسيق لحاوية الأزرار */
+.theme-controls {
+    display: flex;
+    align-items: center;
+}
 
 /* Streak Badge (Navbar) */
 .streak-badge {
@@ -214,20 +224,20 @@ body {
 .quran-field { margin-bottom: 15px; text-align: right; }
 .quran-field label { font-weight: bold; display: block; margin-bottom: 8px; color: var(--text-color); }
 .quran-select {
-  width: 100%; padding: 10px; font-size: 16px; border-radius: 8px;
+  width: 100%; padding: 10px; font-size: 1rem; border-radius: 8px;
   border: 1px solid var(--border-color); outline: none; font-family: inherit;
   background: var(--bg-color); color: var(--text-color);
 }
 .quran-audio-wrap { text-align: center; margin-top: 15px; }
 .quran-audio-wrap audio { width: 100%; border-radius: 30px; }
 
-.quran-loading { text-align: center; font-size: 18px; color: var(--text-color); opacity: 0.6; padding: 10px 0; }
+.quran-loading { text-align: center; font-size: 1.2rem; color: var(--text-color); opacity: 0.6; padding: 10px 0; }
 .quran-error { color: #ef4444; text-align: center; font-size: 1rem; }
 .surah-title-box { text-align: center; color: var(--primary-color); font-weight: bold; margin-bottom: 20px; font-size: 1.5rem; }
-.bismillah-box { text-align: center; margin-bottom: 15px; font-size: 28px; color: var(--text-color); }
+.bismillah-box { text-align: center; margin-bottom: 15px; font-size: 1.8rem; color: var(--text-color); }
 .ayah-num-badge {
   display: inline-block; border: 2px solid var(--primary-color); border-radius: 50%;
-  min-width: 34px; height: 34px; line-height: 30px; text-align: center; font-size: 15px;
+  min-width: 34px; height: 34px; line-height: 30px; text-align: center; font-size: 0.95rem;
   margin: 0 5px; color: var(--primary-color); font-family: 'Cairo', sans-serif; vertical-align: middle;
 }
 /* تنسيقات تبويب المشاركة الجديد */
@@ -246,7 +256,7 @@ body {
     border: none;
     border-radius: 50px;
     color: white;
-    font-size: 22px;
+    font-size: 1.3rem;
     font-family: 'Cairo', sans-serif;
     font-weight: bold;
     cursor: pointer;
@@ -279,7 +289,7 @@ body {
     border: none;
     border-radius: 8px;
     color: white;
-    font-size: 14px;
+    font-size: 0.9rem;
     font-family: 'Cairo', sans-serif;
     font-weight: 600;
     cursor: pointer;
@@ -298,7 +308,7 @@ body {
     border: none;
     border-radius: 50%;
     color: white;
-    font-size: 20px;
+    font-size: 1.2rem;
     cursor: pointer;
     display: flex;
     align-items: center;

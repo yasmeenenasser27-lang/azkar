@@ -1,3 +1,41 @@
+// --- ضفنا هذا القسم الجديد للتحكم في حجم الخط ---
+const fontDecreaseBtn = document.getElementById("font-decrease");
+const fontIncreaseBtn = document.getElementById("font-increase");
+const rootElement = document.documentElement; // عنصر html
+let currentFontSize =
+  parseFloat(
+    getComputedStyle(rootElement).getPropertyValue("--base-font-size"),
+  ) || 16;
+const fontStep = 1;
+const minFontSize = 12;
+const maxFontSize = 24;
+
+// استرجاع الحجم المحفوظ
+if (localStorage.getItem("fontSize")) {
+  currentFontSize = parseFloat(localStorage.getItem("fontSize"));
+  rootElement.style.setProperty("--base-font-size", currentFontSize + "px");
+}
+
+fontDecreaseBtn.addEventListener("click", () => {
+  if (currentFontSize > minFontSize) {
+    currentFontSize -= fontStep;
+    updateFontSize();
+  }
+});
+
+fontIncreaseBtn.addEventListener("click", () => {
+  if (currentFontSize < maxFontSize) {
+    currentFontSize += fontStep;
+    updateFontSize();
+  }
+});
+
+function updateFontSize() {
+  rootElement.style.setProperty("--base-font-size", currentFontSize + "px");
+  localStorage.setItem("fontSize", currentFontSize + "px"); // حفظ الحجم
+}
+// --- نهاية القسم الجديد ---
+
 // --- 1. إدارة التبويبات (Tabs) ---
 function openTab(tabId) {
   // إخفاء كل المحتوى
@@ -48,8 +86,7 @@ window.onload = () => {
       // كل عدادات التسبيح هدفها 1000 (يطابق الـ onclick في HTML)
       updateProgress(id, savedVal, 1000);
       if (parseInt(savedVal) >= 1000) {
-        card.closest(".counter-card").style.borderColor =
-          "var(--accent-color)";
+        card.closest(".counter-card").style.borderColor = "var(--accent-color)";
       }
     }
   }
@@ -273,7 +310,8 @@ function renderStatsPanel() {
         topName = name;
       }
     });
-    topEl.innerText = topCount > 0 ? `${topName} (${topCount} مرة)` : "لا يوجد بعد";
+    topEl.innerText =
+      topCount > 0 ? `${topName} (${topCount} مرة)` : "لا يوجد بعد";
   }
 
   const totalWeekEl = document.getElementById("week-total-count");
@@ -383,7 +421,6 @@ function nativeShare() {
     copyShareLink();
   }
 }
-
 function copyShareLink() {
   navigator.clipboard.writeText(window.location.href).then(() => {
     alert("تم نسخ الرابط بنجاح!");
