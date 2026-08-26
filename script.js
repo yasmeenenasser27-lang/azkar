@@ -76,7 +76,7 @@ themeBtn.addEventListener("click", () => {
 // --- 3. نظام التسبيح التفاعلي ---
 // استرجاع البيانات عند الفتح
 window.onload = () => {
-  for (let i = 1; i <= 15; i++) {
+  for (let i = 1; i <= 16; i++) {
     let id = "c" + i;
     let savedVal = localStorage.getItem(id);
     const card = document.getElementById(id);
@@ -128,7 +128,7 @@ function updateProgress(id, currentVal, maxVal) {
 
 // تصفير جميع العدادات
 function resetCounters() {
-  for (let i = 1; i <= 15; i++) {
+  for (let i = 1; i <= 16; i++) {
     let id = "c" + i;
     document.getElementById(id).innerText = "0";
     localStorage.removeItem(id);
@@ -137,32 +137,6 @@ function resetCounters() {
       "var(--border-color)";
   }
 }
-
-// --- 4. عداد أذكار الصباح والمساء ---
-// function decrementAzkar(btn, maxVal) {
-//   let currentText = btn.innerText;
-
-//   if (currentText.includes("سبّح")) {
-//     btn.innerText = `باقي ${maxVal - 1}`;
-//   } else {
-//     let remain = parseInt(currentText.replace(/\D/g, ""));
-//     if (remain > 1) {
-//       btn.innerText = `باقي ${remain - 1}`;
-//     } else {
-//       btn.innerHTML = '<i class="fas fa-check"></i> اكتمل';
-//       btn.classList.add("done");
-//       btn.disabled = true;
-//     }
-//   }
-//   if (navigator.vibrate) navigator.vibrate(30);
-
-//   // تسجيل النشاط للستريك والإحصائيات
-//   const azkarItem = btn.closest(".azkar-item");
-//   const azkarText = azkarItem
-//     ? azkarItem.querySelector(".azkar-text")?.innerText.trim().slice(0, 30)
-//     : "ذكر بعد الصلاة";
-//   recordActivity(azkarText || "ذكر بعد الصلاة", 1);
-// }
 function decrementAzkar(btn, maxCount) {
   // جلب العنصر الذي يعرض العداد
   const badge = btn.previousElementSibling;

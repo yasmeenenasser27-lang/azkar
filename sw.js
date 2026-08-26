@@ -1,7 +1,7 @@
 // اسم الكاش - غيّري الرقم عند كل تحديث للموقع عشان تنزل النسخة الجديدة
-const CACHE_NAME = "azkar-v4";
-const RUNTIME_CACHE = "azkar-runtime-v4";
-const ASSET_CACHE = "azkar-assets-v4";
+const CACHE_NAME = "azkar-v5";
+const RUNTIME_CACHE = "azkar-runtime-v5";
+const ASSET_CACHE = "azkar-assets-v5";
 
 // الملفات الأساسية للموقع (الهيكل) - يتم تخزينها فوراً عند أول زيارة
 const APP_SHELL = [

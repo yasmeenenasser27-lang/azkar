@@ -7,7 +7,7 @@
     <title>حصن المسلم</title>
 
     <!-- إعدادات PWA: تثبيت الموقع كتطبيق على الموبايل -->
-    <meta name="theme-color" content="#8104b2" />
+    <meta name="theme-color" content="var(--primary-color)" />
     <link rel="manifest" href="./manifest.json" />
     <link rel="icon" type="image/png" href="design.png" />
     <link rel="apple-touch-icon" type="image/png" href="design.png" />
@@ -153,26 +153,6 @@
             <h3>الحمد لله</h3>
             <p class="target-text">الهدف: 1000</p>
           </div>
-          <!-- كارت التسبيح 3 -->
-          <div
-            class="counter-card"
-            onclick="incrementCounter('c3', 1000, this)"
-          >
-            <div
-              class="progress-circle"
-              id="prog-c3"
-              style="
-                background: conic-gradient(
-                  var(--primary-color) 0%,
-                  var(--circle-bg) 0%
-                );
-              "
-            >
-              <div class="inner-circle"><span id="c3">0</span></div>
-            </div>
-            <h3>الله أكبر</h3>
-            <p class="target-text">الهدف: 1000</p>
-          </div>
           <!-- كارت التسبيح 4 -->
           <div
             class="counter-card"
@@ -193,6 +173,27 @@
             <h3>لا إله إلا الله</h3>
             <p class="target-text">الهدف: 1000</p>
           </div>
+          <!-- كارت التسبيح 3 -->
+          <div
+            class="counter-card"
+            onclick="incrementCounter('c3', 1000, this)"
+          >
+            <div
+              class="progress-circle"
+              id="prog-c3"
+              style="
+                background: conic-gradient(
+                  var(--primary-color) 0%,
+                  var(--circle-bg) 0%
+                );
+              "
+            >
+              <div class="inner-circle"><span id="c3">0</span></div>
+            </div>
+            <h3>الله أكبر</h3>
+            <p class="target-text">الهدف: 1000</p>
+          </div>
+
           <!-- كارت التسبيح 5 -->
           <div
             class="counter-card"
@@ -231,29 +232,6 @@
               <div class="inner-circle"><span id="c6">0</span></div>
             </div>
             <h3>اللهم صلِّ على محمد</h3>
-            <p class="target-text">الهدف: 1000</p>
-          </div>
-          <!-- كارت التسبيح 7 -->
-          <div
-            class="counter-card"
-            onclick="incrementCounter('c7', 1000, this)"
-          >
-            <div
-              class="progress-circle"
-              id="prog-c7"
-              style="
-                background: conic-gradient(
-                  var(--primary-color) 0%,
-                  var(--circle-bg) 0%
-                );
-              "
-            >
-              <div class="inner-circle"><span id="c7">0</span></div>
-            </div>
-            <h3>
-              أسْتَغْفِرُ اللهَ العَظِيمَ الَّذِي لاَ إلَهَ إلاَّ هُوَ، الحَيُّ
-              القَيُّومُ، وَأتُوبُ إلَيهِ
-            </h3>
             <p class="target-text">الهدف: 1000</p>
           </div>
           <!-- كارت التسبيح 8 -->
@@ -296,6 +274,30 @@
             <h3>سبحان الله العَظـيم</h3>
             <p class="target-text">الهدف: 1000</p>
           </div>
+          <!-- كارت التسبيح 7 -->
+          <div
+            class="counter-card"
+            onclick="incrementCounter('c7', 1000, this)"
+          >
+            <div
+              class="progress-circle"
+              id="prog-c7"
+              style="
+                background: conic-gradient(
+                  var(--primary-color) 0%,
+                  var(--circle-bg) 0%
+                );
+              "
+            >
+              <div class="inner-circle"><span id="c7">0</span></div>
+            </div>
+            <h3>
+              أسْتَغْفِرُ اللهَ العَظِيمَ الَّذِي لاَ إلَهَ إلاَّ هُوَ، الحَيُّ
+              القَيُّومُ، وَأتُوبُ إلَيهِ
+            </h3>
+            <p class="target-text">الهدف: 1000</p>
+          </div>
+
           <!-- كارت التسبيح 10 -->
           <div
             class="counter-card"
@@ -339,6 +341,26 @@
             <h3>لا إله إلا انت سبحانك اني كنت من الظالمين</h3>
             <p class="target-text">الهدف: 1000</p>
           </div>
+          <!-- كارت التسبيح 14 -->
+          <div
+            class="counter-card"
+            onclick="incrementCounter('c14', 1000, this)"
+          >
+            <div
+              class="progress-circle"
+              id="prog-c14"
+              style="
+                background: conic-gradient(
+                  var(--primary-color) 0%,
+                  var(--circle-bg) 0%
+                );
+              "
+            >
+              <div class="inner-circle"><span id="c14">0</span></div>
+            </div>
+            <h3>سبحان الله وبحمده عدد خلقه ورضا نفسه وزنة عرشه</h3>
+            <p class="target-text">الهدف: 1000</p>
+          </div>
           <!-- كارت التسبيح 12 -->
           <div
             class="counter-card"
@@ -379,26 +401,7 @@
             <h3>اللهم اغفر لي ذنبي كله دقه وجله علانيته وسره وأوله واخره</h3>
             <p class="target-text">الهدف: 1000</p>
           </div>
-          <!-- كارت التسبيح 14 -->
-          <div
-            class="counter-card"
-            onclick="incrementCounter('c14', 1000, this)"
-          >
-            <div
-              class="progress-circle"
-              id="prog-c14"
-              style="
-                background: conic-gradient(
-                  var(--primary-color) 0%,
-                  var(--circle-bg) 0%
-                );
-              "
-            >
-              <div class="inner-circle"><span id="c14">0</span></div>
-            </div>
-            <h3>سبحان الله وبحمده عدد خلقه ورضا نفسه وزنة عرشه</h3>
-            <p class="target-text">الهدف: 1000</p>
-          </div>
+
           <!-- كارت التسبيح 15 -->
           <div
             class="counter-card"
@@ -416,7 +419,33 @@
             >
               <div class="inner-circle"><span id="c15">0</span></div>
             </div>
+            <h3>
+              اللهم اغفر للمؤمنين والمؤمنات والمسلمين والمسلمات الأحياء منهم
+              والأموات
+            </h3>
+
+            <p class="target-text">الهدف: 1000</p>
+          </div>
+
+          <!-- كارت التسبيح 15 -->
+          <div
+            class="counter-card"
+            onclick="incrementCounter('c16', 1000, this)"
+          >
+            <div
+              class="progress-circle"
+              id="prog-c16"
+              style="
+                background: conic-gradient(
+                  var(--primary-color) 0%,
+                  var(--circle-bg) 0%
+                );
+              "
+            >
+              <div class="inner-circle"><span id="c16">0</span></div>
+            </div>
             <h3>اللهم أعني على ذكرك وشكرك وحسن عبادتك</h3>
+
             <p class="target-text">الهدف: 1000</p>
           </div>
         </div>
@@ -547,11 +576,22 @@
           </div>
           <div class="azkar-item">
             <p class="azkar-text">
+              اصبحت اثني عليك حَمْدًا واشهد ان لا إله إلا انت
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="1">ثلاث مرات</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 3)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
               " اللّهـمَّ أَنْتَ رَبِّـي لا إلهَ إلاّ أَنْتَ ، خَلَقْتَنـي
               وَأَنا عَبْـدُك ، وَأَنا عَلـى عَهْـدِكَ وَوَعْـدِكَ ما
               اسْتَـطَعْـت ، أَعـوذُبِكَ مِنْ شَـرِّ ما صَنَـعْت ، أَبـوءُ لَـكَ
               بِنِعْـمَتِـكَ عَلَـيَّ وَأَبـوءُ بِذَنْـبي فَاغْفـِرْ لي
-              فَإِنَّـهُ لا يَغْ=فِرُ الذُّنـوبَ إِلاّ أَنْتَ .. "
+              فَإِنَّـهُ لا يَغْفِرُ الذُّنـوبَ إِلاّ أَنْتَ .. "
             </p>
             <div class="azkar-footer">
               <span class="repeat-badge" data-count="1">مرة واحدة</span>
@@ -740,6 +780,17 @@
           </div>
           <div class="azkar-item">
             <p class="azkar-text">
+              اللَّهُمَّ صلِّ وسلَّم وبارك على نبينَّا محمد
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="10">10 مرات</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 10)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
               لَا إلَه إلّا اللهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ
               وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءِ قَدِيرِ.
             </p>
@@ -918,9 +969,9 @@
             <p class="azkar-text">
               " اللّهـمَّ أَنْتَ رَبِّـي لا إلهَ إلاّ أَنْتَ ، خَلَقْتَنـي
               وَأَنا عَبْـدُك ، وَأَنا عَلـى عَهْدِكَ وَوَعْـدِكَ ما اسْتَـطَعْت
-              ، أَعوذُبِكَ مِنْ شَـرِّ ما صَنَـعْت ، أَب=وءُ لَـكَ
-              بِنِعْـمَتِـكَ عَلَـيَّ وَأَبوءُ بِذَنْـبي فَاغْفـِرْ لي
-              فَإِنَّـهُ لا يَغْفِرُ الذُّنـوبَ إِلاّ أَنْتَ .. "
+              ، أَعوذُبِكَ مِنْ شَـرِّ ما صَنَـعْت ، أَبوءُ لَـكَ بِنِعْـمَتِـكَ
+              عَلَـيَّ وَأَبوءُ بِذَنْـبي فَاغْفـِرْ لي فَإِنَّـهُ لا يَغْفِرُ
+              الذُّنـوبَ إِلاّ أَنْتَ .. "
             </p>
             <div class="azkar-footer">
               <span class="repeat-badge" data-count="1">مرة واحدة</span>
@@ -934,10 +985,10 @@
             <p class="azkar-text">
               "اللّهُـمَّ إِنِّـي أسْـأَلُـكَ العَـفْوَ وَالعـافِـيةَ في
               الدُّنْـيا وَالآخِـرَة، اللّهُـمَّ إِنِّـي أسْـأَلُـكَ العَـفْوَ
-              وَالعـافِـيةَ في ديني وَدُنْ=يايَ وَأهْـلي وَمالـي، اللّهُـمَّ
-              اسْتُـرْ ع=وْراتي وَآمِـنْ رَوْعاتـي، اللّهُـمَّ احْفَظْـني مِن
+              وَالعـافِـيةَ في ديني وَدُنْيايَ وَأهْـلي وَمالـي، اللّهُـمَّ
+              اسْتُـرْ عوْراتي وَآمِـنْ رَوْعاتـي، اللّهُـمَّ احْفَظْـني مِن
               بَـينِ يَدَيَّ وَمِن خَلْفـي وَعَن يَمـيني وَعَن شِمـالي، وَمِن
-              فَوْقـي، وَأَع=وذُ بِعَظَمَـتِكَ أَن أُغْ=تالَ مِن تَحْتـي."
+              فَوْقـي، وَأَعوذُ بِعَظَمَـتِكَ أَن أُغْتالَ مِن تَحْتـي."
             </p>
             <div class="azkar-footer">
               <span class="repeat-badge" data-count="1">مرة واحدة</span>
@@ -1148,6 +1199,17 @@
             <p class="azkar-text">
               لَا إلَه إلّا اللهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ
               وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلُّ شَيْءِ قَدِيرِ .
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="10">10 مرات</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 10)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
+              اللَّهُمَّ صلِّ وسلَّم وبارك على نبينَّا محمد
             </p>
             <div class="azkar-footer">
               <span class="repeat-badge" data-count="10">10 مرات</span>
@@ -1910,6 +1972,15 @@
               </button>
             </div>
           </div>
+          <div class="azkar-sitem">
+            <p class="azkar-text">قراءة سورة السجدة</p>
+            <div class="azkar-sfooter">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> سبّح
+              </button>
+            </div>
+          </div>
         </div>
 
         <button
@@ -2213,6 +2284,17 @@
           </div>
           <div class="azkar-item">
             <p class="azkar-text">
+              اللهم إنّي أعوذ بك أن أُشرِك بك وأنا أعلم وأستغفرك لما لا أعلم
+            </p>
+            <div class="azkar-footer">
+              <span class="repeat-badge" data-count="1">مرة واحدة</span>
+              <button class="azkar-btn" onclick="decrementAzkar(this, 1)">
+                <i class="fas fa-fingerprint"></i> اذكر
+              </button>
+            </div>
+          </div>
+          <div class="azkar-item">
+            <p class="azkar-text">
               اللهم إني أسألك الهدى والتقى والعفاف والغنى.
             </p>
             <div class="azkar-footer">
@@ -2258,8 +2340,8 @@
           </div>
           <div class="azkar-item">
             <p class="azkar-text">
-              اللَّهُمَّ إِنِّي أَسْأَلُكَ ززيَادَةً فِي الدِّينِ، وَبَرَكَةً
-              فِي الْعُمْرِ، وَصِحَّةً فِي الْجَسَدِ، وَسَعَةً فِي الرِّزْقِ,
+              اللَّهُمَّ إِنِّي أَسْأَلُكَ زيَادَةً فِي الدِّينِ، وَبَرَكَةً فِي
+              الْعُمْرِ، وَصِحَّةً فِي الْجَسَدِ، وَسَعَةً فِي الرِّزْقِ,
               وَتَوْبَةً قَبْلَ الْمَوْتِ، وَرَحْمَةً عِنْدَ الْمَوْتِ،
               وَمَغْفِرَةً بَعْدَ الْمَوْتِ، وَعَفْوًا عِنْدَ الْحِسَابِ،
               وَأَمَانًا مِنَ الْعَذَابِ.
